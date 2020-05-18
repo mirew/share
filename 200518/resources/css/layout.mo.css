@@ -1,0 +1,197 @@
+@charset "utf-8";
+/*
+ * 파일정의 : layout.mo.css
+ * 파일설명 : layout css
+ * 작성자 :  glim 한지혜
+ * 주의사항 : 주석표기는 페이지 접근방법을 알수 있도록 표시
+ * 최초작성일: 2019/08/07
+ * 최종수정일: 2020/04/29
+ *  20190829 연관검색어관련수정(닫기버튼추가 리스트 라디오로 변경
+ *  20190904 연관검색어 x 버튼 아래내림
+ *  20200108 스크롤관련수정
+ *  20200424 추천키워드 더보기시 채팅창 높이 수정
+ *  20200428 추천키워드 고정높이 수정
+ */
+
+
+/**********************************************************************************
+** Layout
+***********************************************************************************/
+html {
+	height:100%;
+}
+body {
+	font-family:'OneShinhan', sans-serif;
+	font-size:14px;
+	line-height:1.4;
+	color:#fff;
+	position:fixed;
+	width:100%;
+	height:100%;
+	overflow: hidden;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	min-width: 320px;
+}
+
+
+
+body > .wrapper {
+	position:relative;
+	width: 100%;
+	min-height:100%;
+	height:100%;
+	box-sizing:border-box;
+	overflow:hidden;
+	background: #442c67 url(../images/mo/common/bg.png) no-repeat top left;
+	background-attachment: fixed;
+	background-size:100% auto;
+}
+.nav {
+	position:fixed;
+	width:100%;
+	height:50px;
+	top:0;
+	left:0;
+	z-index: 5;
+	background-size:100%;
+	background-attachment: fixed;
+}
+
+.aside {
+	position:fixed;
+	width:320px;
+	box-sizing: border-box;
+	height:100%;
+	background: #392460 url(../images/pc/common/aside_bg.png) no-repeat top center;
+	z-index: 16;
+	transition:all 0.3s;
+}
+
+
+.chat {
+	position:relative;
+	width: 100%;
+	min-width: 320px;
+	height: calc(100% - 95px);
+	overflow-y:hidden;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	margin: 50px auto 0;
+	padding: 0;
+	transition:all 0.3s;
+	line-height: 1.6;
+	font-size: 13px;
+	-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)),color-stop(8%, rgba(0,0,0,0.92)));
+	-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.92) 8%);
+	mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)),color-stop(8%, rgba(0,0,0,0.92)));
+	mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.92) 8%);
+}
+.chat:after {content:""; display:block; clear:both;}
+.chat .in-cont {position: relative;}
+.chat .in-cont:after {content:""; display:block; clear:both;}
+.chat .mCSB_container:after {content:""; display:block; clear:both;}
+
+.overlay-aside {
+	display: none;
+	opacity: 0;
+	position:fixed;
+	left:0;right:0;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	z-index: 5;
+	transition:all 0.3s;
+}
+.overlay-nav {
+	display: none;
+	opacity: 0;
+	position:fixed;
+	width:60px;
+	height: 100%;
+	transition:all 0.3s;
+	left:0;
+	background: rgba(0,0,0,0.1);
+	z-index: 11;
+
+}
+.overlay-dialog {
+	display: none;
+	position:fixed;
+	left:-1px;
+	width:60px;
+	top: 0; bottom: 0;
+	background: rgba(0,0,0,0);
+	z-index: 99;
+
+}
+
+
+.aside {left:100%;}
+.is-aside-open .aside {left:calc(100% - 320px);}
+.is-aside-open .overlay-aside {opacity: 1;display: block}
+.ui-widget-overlay { left: 0; }
+
+.chat { width: 100% }
+.chat-write { width: 100% }
+
+/*연관검색어*/
+/* 20200424 S : 추천키워드 더보기시 채팅창 높이, bottom 버튼 위치 수정*/
+/* S : 20200428 추천키워드 높이 조절*/
+body.is-relative-open .chat {height: calc(100% - 255px)}
+body.is-relative-open .btn-go-bottom{bottom:225px;}
+body.is-relative-open.is-rec-large .chat {height: calc(100% - 351px);}
+body.is-relative-open.is-rec-large .btn-go-bottom {bottom:321px;}
+/* E : 20200428 추천키워드 높이 조절*/
+
+
+@media only screen and (max-device-height : 568px){ /* iphone 5 */
+	body.is-relative-open .chat {height: calc(100% - 230px); }
+	body.is-relative-open.is-rec-large .chat {height: calc(100% - 230px); }
+	body.is-relative-open .btn-go-bottom{bottom: 200px;}
+	body.is-relative-open.is-rec-large .btn-go-bottom{bottom: 200px;}
+}
+
+@media only screen and (min-device-height : 569px) and (max-device-height : 667px) { /* iphone 6/7/8 */
+	/* S : 20200428 추천키워드 높이 조절*/
+	body.is-relative-open.is-rec-large .chat {height: calc(100% - 255px)}
+	body.is-relative-open.is-rec-large .btn-go-bottom{bottom:225px;}
+	/* E : 20200428 추천키워드 높이 조절*/
+
+}
+
+/* 20200424 E : 추천키워드 더보기시 채팅창 높이, bottom 버튼 위치 수정*/
+
+.chat .mCustomScrollBox {overflow-y: scroll; -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */}
+.chat .mCSB_container { padding: 40px 18px 25px;}
+
+.aside .mCustomScrollBox {overflow-y: scroll; -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */}
+.aside .mCSB_container {padding:0 18px 18px; min-height: calc(100% - 18px);}
+
+
+/* 2020년01월08일  S:스크롤 관련 추가*/
+.mCustomScrollbar{ -ms-touch-action: pinch-zoom; touch-action: pinch-zoom; /* direct pointer events to js */ }
+.mCustomScrollbar.mCS_no_scrollbar, .mCustomScrollbar.mCS_touch_action{ -ms-touch-action: auto; touch-action: auto; }
+
+.mCustomScrollBox{ /* contains plugin's markup */
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	max-width: 100%;
+	outline: none;
+	direction: ltr;
+}
+.mCSB_container{ /* contains the original content */
+	overflow: hidden;
+	width: auto;
+	height: auto;
+}
+/* 2020년01월08일  E:스크롤 관련 */
+
+
+
+
+
+
+
+
+

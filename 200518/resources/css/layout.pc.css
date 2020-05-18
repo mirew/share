@@ -1,0 +1,210 @@
+@charset "utf-8";
+/*
+ * 파일정의 : layout.css
+ * 파일설명 : layout css
+ * 작성자 :  glim 한지혜
+ * 주의사항 : 주석표기는 페이지 접근방법을 알수 있도록 표시
+ * 최초작성일: 2019/07/17
+ * 최종수정일: 2020/05/11
+ *  20190829 연관검색어관련수정(닫기버튼추가 리스트 라디오로 변경
+ *  20190904 연관검색어 x 버튼 아래내림
+ *  20191030 is-aside-open 탑버튼 감추기
+ *  20200424 bottom 버튼 위치, chat 높이 수정
+ *  20200511 resize시 채팅창 css 계산 높이 추가
+ */
+
+
+/**********************************************************************************
+** Layout
+***********************************************************************************/
+html {
+	height:100%;
+}
+body {
+	font-family:'OneShinhan', Dotum, sans-serif;
+	font-size:14px;
+	line-height:1.4;
+	color:#fff;
+	position:relative;
+	height:100%;
+	overflow: hidden;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	min-width: 480px;
+	min-height: 740px;
+	-webkit-overflow-scrolling: touch;
+	transition:all 0.3s;
+
+}
+
+
+body > .wrapper {
+	position:relative;
+	width: 100%;
+	min-height:100%;
+	height:100%;
+	margin: 0 auto;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box; /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */
+	/*overflow-y:auto;
+	-webkit-overflow-scrolling: touch;*/
+	overflow:hidden;
+	z-index: 1;
+	background: url(../images/pc/common/bg.png) no-repeat top left;
+
+}
+.nav {
+	position:fixed;
+	width:60px;
+	height:100%;
+	left:0;
+	z-index: 7;
+	background: #2c204d url(../images/pc/common/nav_bg.png) no-repeat top center;
+
+
+}
+.aside {
+	position:fixed;
+	width:388px;
+	height:100%;
+	background: #392460 url(../images/pc/common/aside_bg.png) no-repeat top center;
+	z-index: 6;
+	transition:all 0.3s;
+}
+
+
+.chat {
+	position:relative;
+	width: 100%;
+	min-width: 420px;
+	height: auto;
+	margin: 0 auto;
+	/*padding: 40px 22px 80px;*/
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	transition:all 0.3s;
+	line-height: 1.6;
+	font-size: 13px;
+}
+.chat:after {content:""; display:block; clear:both;}
+
+.chat {
+	height: calc(100% - 54px);
+	margin-bottom: 54px;
+	background: url(../images/pc/common/bg.png) no-repeat 0 top ;
+	/*background-attachment: fixed;*/
+	background-size: auto auto;
+}
+
+/*
+투명화
+.chat .mCustomScrollBox:after { content:"";
+	position: fixed;
+	top:0;
+	left:0;
+	right:0;
+	height:40px;
+	background: url(../images/common/bg_top.png) no-repeat 0 top ;
+}
+.chat .mCustomScrollBox:before { content:"";
+	position: fixed;
+	bottom:60px;
+	left:0;
+	right:0;
+	height:40px;
+	background: url(../images/common/bg_bottom.png) repeat-x top left ;
+	z-index: 3;
+}*/
+
+
+.overlay-aside {
+	display: none;
+	opacity: 0;
+	position:fixed;
+	left:0;right:0;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	z-index: 5;
+	transition:all 0.3s;
+}
+.overlay-nav {
+	display: none;
+	opacity: 0;
+	position:fixed;
+	width:60px;
+	height: 100%;
+	transition:all 0.3s;
+	left:0;
+	background: rgba(0,0,0,0.1);
+	z-index: 11;
+
+}
+.overlay-dialog {
+	display: none;
+	position:fixed;
+	left:0;
+	width:60px;
+	top: 0; bottom: 0;
+	background: rgba(0,0,0,0.1);
+	z-index: 99;
+
+}
+
+
+.aside {left:-328px;}
+.is-aside-open .aside {left:60px;}
+.ui-widget-overlay { left: 0; }
+
+.chat { margin-left: 60px; width: calc(100% - 60px); }
+.chat-write { left: 60px; width: calc(100% - 60px); }
+
+/*연관검색어*/
+/* 20200511 S: 추천키워드 노출시 채팅창 높이 추가 */
+body.is-relative-open.is-resize .chat {height: calc(100% - 54px - 196px); }
+body.is-relative-open.is-rec-large.is-resize .chat {height: calc(100% - 54px - 301px); }
+body.is-relative-open.is-rec-large.is-rec-expanded.is-resize .chat {height: 134px; }
+body.is-relative-open.is-rec-large.is-rec-expanded.is-resize .btn-go-bottom {bottom: calc(100vh - 114px);}
+/* 20200511 E: 추천키워드 노출시 채팅창 높이 추가 */
+
+/* 20200424 S: 추천키워드 UI 수정 */
+body.is-relative-open .btn-go-bottom {bottom:270px;}
+body.is-relative-open.is-rec-large .btn-go-bottom {bottom:375px;} /* 20200428 추천키워드 bottom 버튼 위치 수정 */
+/* 20200424 E: 추천키워드 UI 수정 */
+
+@media screen and (max-width: 867px) {
+
+	body.is-aside-open {}
+	.is-aside-open .overlay-aside {display:block;opacity: 1;}
+	.is-aside-open .js-go-bottom {display:none;opacity: 0;}
+
+}
+
+@media screen and (min-width: 868px) {
+
+		/*body.is-aside-open {background-position: 448px top;}*/
+		body.is-aside-open .chat {margin-left: 448px; width: calc(100% - 448px); }
+		body.is-aside-open .chat-write {left: 448px; width: calc(100% - 448px); }
+		/*.is-aside-open .ui-widget-overlay { left: 448px; }*/
+		.is-aside-open .overlay-dialog { width: 448px; }
+}
+
+@media screen and (min-width: 1920px) {
+
+	.chat {background-size: cover;}
+}
+@media screen and (min-height: 1080px) {
+
+	.chat {background-size: cover;}
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1233 @@
+
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>신한챗봇 몰리 - 퍼블리싱 현황판</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta name="Robots" content="noindex, nofollow" />
+    <script src="resources/js/lib/jquery/jquery-1.9.1.min.js" ></script>
+
+    <script>
+        function funcIallmenuDropdown (){
+            $('.ia-header-guide-mobile').toggleClass('is-visible');
+        }
+    </script>
+    <style>
+        @charset "utf-8";
+        /*
+         파일정의 : ia.css
+         파일설명 : 현황판 css
+         작성자 :  한지혜
+         주의사항 : 주석표기는 페이지 접근방법을 알수 있도록 표시
+         최초작성일: 2019/03/05
+         최종수정일: 2019/03/05
+        */
+        /**********************************************************************************
+        ** Base
+        ***********************************************************************************/
+        ::before, ::after, html, body, div, ul, ol, dl, li, dd, p, h1, h2, h3, h4, h5, h6, table, th, td, caption, address, article, aside, canvas, details, figure, figcaption, footer, header, menu, nav, section, button, select, textarea, input, fieldset, legend, a, span, strong, em, address, dfn, small, i, b {box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -o-box-sizing:border-box; margin:0; padding:0; border:0; list-style:none; word-break:break-all; font-family:'Malgun Gothic', 'MalgunGothic', '맑은고딕', Dotum, '돋움', Verdana, sans-serif; font-style:normal; font-weight:normal;
+            color:#4c5667;}
+        article, aside, canvas, details, figure, figcaption, footer, header, menu, nav, section {display:block;}
+        html {font-size:14px;letter-spacing:-0.5px;}
+        body {-webkit-text-size-adjust: none; -moz-text-size-adjust: none; -ms-text-size-adjust: none;}
+        hr {display:none;}
+        img {vertical-align:middle;}
+        button {background-color:transparent;}
+        fieldset, iframe {width:100%;}
+        img, a, frame, iframe, fieldset {border:0;}
+        table {width:100%; border-spacing:0; border-collapse:collapse;}
+        caption {visibility:hidden; height:0; line-height:0; font-size:0;}
+        legend {position:absolute; left:-9999em; top:-9999em;}
+        a {text-decoration:none; color:#4c5667;}
+
+        /**********************************************************************************
+        **  Layout
+        ***********************************************************************************/
+        /* IA Title */
+        .ia-section {padding:0 20px; max-width:100%;}
+        .ia-header-wrapper{position:fixed; z-index:100; width:100%; height:60px; line-height:60px; background-color:#ec1f2f;}
+        .ia-header-wrapper > .ia-section {position:relative;}
+        .ia-content-body {padding:80px 20px 50px;}
+        #gTotal {padding-top:0;}
+        #gTotal .ia-section-body {margin-top:0;}
+        .ia-section-body {margin-top:10px;}
+        .ia-section-header {border:0;}
+        .ia-h2 {font-size:20px;}
+        .ia-h2:before {display:none;}
+
+        .ia-header-wrapper .ia-section {transition:all 0.3s ease-out; -webkit-transition:all 0.3s ease-out 0s; -moz-transition:all 0.3s ease-out 0s; -o-transition:all 0.3s ease-out 0s;}
+        .ia-header-wrapper .ia-guide-link {position:absolute; right:20px; top:15px; margin-top:0; line-height:30px;}
+        .ia-header-wrapper .ia-guide-link.is-mobile {display:none;}
+        .ia-header-wrapper .ia-guide-link a {display:inline-block; padding:0px 10px; font-size:14px; color:#fff; background:rgba(0,0,0,.3); border-radius:3px;}
+        .ia-header-wrapper .ia-guide-link a.is-active {background: rgb(0, 0, 0);}
+
+        .ia-header-wrapper .ia-header-guide-mobile {display: none;}
+
+        /* Section */
+        /*.ia-section + .ia-section {margin-top:40px;}*/
+        .ia-section-header {position:relative;}
+
+        /* 목차 */
+        .ia-h1 {display:inline-block; font-size:20px; font-weight:normal; color:#fff;letter-spacing:-1px;}
+        .ia-h2 {font-size:20px; padding-top:60px;}
+        .ia-h2 > a {font-size:20px; font-weight:600;}
+        .ia-h2:before {display:block; width:20px; height:1px; margin-bottom:5px; background-color:#222;}
+        .ia-h3 {margin-top:25px; margin-bottom:10px; font-size:16px; font-weight:bold;}
+        .ia-h3:first-child {margin-top:0;}
+        .ia-h4 {color:#343b45; font-weight:bold;margin-bottom:10px;}
+        .ia-h3 + .ia-h4 {margin-top:10px;}
+        .ia-h4:before {content:''; display:inline-block; position:relative; top:-1px; width:3px; height:13px; margin-right:5px; background-color:#343b45; vertical-align:middle;}
+        @media screen and (max-width:639px) {
+            .ia-header-wrapper> .ia-section {padding-top:10px; padding-bottom:10px;vertical-align:top;box-sizing:border-box;}
+            .ia-h1 {font-size:20px;vertical-align:top;line-height:40px;}
+            /*.ia-content-body {padding-top:70px;}*/
+        }
+        /**********************************************************************************
+        ** Content
+        ***********************************************************************************/
+
+
+        /* Graph */
+        .ia-graph li {margin:5px 0;}
+        .ia-graph a {display:block; position:relative; line-height:20px;}
+        .ia-graph span {display:inline-block;}
+        .ia-graph .tit {position:absolute; left:0; top:0; z-index:2; display:inline-block; width:200px; height:100%; padding:0 10px; border-radius:10px 0 0 10px; background-color:#4e5c75; color:#fff;font-size:13px;letter-spacing:-1px; white-space: nowrap;  overflow: hidden; text-overflow: ellipsis;}
+        .ia-graph .bar {display:block; position:relative; z-index:1; height:21px; overflow:hidden; background-color:rgba(0,0,0,0.2); border-radius:0 10px 10px 0; margin-left:200px; }
+        .ia-graph .bar:before {content:attr(data-process); position:absolute; right:0; top:0; z-index:2; display:inline-block; width:120px; text-align:right; color:#fff;font-size:12px;}
+        .ia-graph .bar .active {position:absolute; left:0; top:0; z-index:1; display:block; width:0; height:100%; transition:width 0.6s ease-out; -webkit-transition:width 0.6s ease-out 0s; -moz-transition:width 0.6s ease-out 0s; -o-transition:width 0.6s ease-out 0s; opacity:1;}
+        .ia-graph .pages {position:absolute; left:200px; top:0; z-index:3; padding-left:10px; width:65px; text-align:left;font-size:12px; color:#fff !important;}
+        .ia-graph .pages em {color:#fff;}
+        .ia-graph .bar:before, .ia-graph .pages {padding:0 15px;}
+
+
+        /* Note */
+        .ia-note-wrap {padding:20px;  border:solid 1px #eee;}
+        .ia-note-wrap .ia-box-note {}
+
+        /* Legend */
+        .ia-legend {position:absolute; right:0; bottom:5px;}
+        .ia-legend .item {margin-left:0;}
+        .ia-legend .item .tit {}
+        .ia-legend .item .tit.true {}
+        .ia-legend .item .tit.false {}
+        .ia-legend .item .count {}
+
+        /* Table */
+        .ia-tbl-wrap {border-top:solid 1px #96acbf; border-bottom:solid 1px #d9e3ea;}
+        .ia-tbl-wrap table th,
+        .ia-tbl-wrap table td {height:30px; padding:5px 10px 3px 10px; text-align:center; font-size:12px; border-left:1px solid #e6e6e6;vertical-align:top;}
+        .ia-tbl-wrap table th {border-bottom:1px solid #d9e3ea;border-left:1px solid #d9e3ea; font-weight:bold; font-size:12px;background:#f4f8fb;padding:7px 10px 3px 10px; }
+        .ia-tbl-wrap table td {border-top:1px solid #e6e6e6; color:#000;}
+        .ia-tbl-wrap table tr:first-child td {border-top:0;}
+        .ia-tbl-wrap table tr th:first-child,
+        .ia-tbl-wrap table tr td:first-child {border-left:0;}
+        .ia-tbl-wrap table tr th:first-child {padding-left:0;padding-right:0;}
+        .ia-tbl-wrap table tbody + tbody tr:first-child td {border-top:1px solid #96acbf;}
+        .ia-tbl-wrap table td.col-url,
+        .ia-tbl-wrap table td.col-memo,
+        .ia-tbl-wrap table td.col-1depth,
+        .ia-tbl-wrap table td.col-2depth,
+        .ia-tbl-wrap table td.col-3depth,
+        .ia-tbl-wrap table td.col-4depth,
+        .ia-tbl-wrap table td.col-5depth {text-align:left;}
+
+        .ia-tbl-wrap table td.col-url,
+        .ia-tbl-wrap table td.col-date {letter-spacing:0;}
+
+        .ia-tbl-wrap table td.col-memo .btn-memo{
+            font-weight:bold;
+        }
+        .ia-tbl-wrap table td.col-memo .btn-memo:after {
+            content:'-';
+            overflow: hidden;
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-left: 5px;
+            border: 1px solid #bbb;
+            text-align: center;
+            vertical-align: -4px;
+            line-height: 13px;
+            background: #fff;
+        }
+        .ia-tbl-wrap table td.col-memo.active .col-memo-con {
+            display: block;
+            padding: 5px 0;
+        }
+        .ia-tbl-wrap table td.col-memo.active .btn-memo:after {
+            content:'+';
+            border: 1px solid #bbb;
+            color: #e05555;
+        }
+        .ia-tbl-wrap table td.col-memo .col-memo-con {display:none;}
+
+
+        /* Colgroup */
+        .ia-tbl-wrap table .col-num {width:30px;padding:5px 0 3px;}
+        /*.ia-tbl-wrap table .col-1depth,*/
+        /*.ia-tbl-wrap table .col-2depth,*/
+        /*.ia-tbl-wrap table .col-3depth,*/
+        /*.ia-tbl-wrap table .col-4depth,*/
+        /*.ia-tbl-wrap table .col-5depth {width:10%;}*/
+        .ia-tbl-wrap table .col-type {width:60px;}
+        /*.ia-tbl-wrap table .col-url {width:300px;}*/
+        .ia-tbl-wrap table .col-date {width:75px;padding:5px 0 3px;}
+        /*.ia-tbl-wrap table .col-complete {width:70px;}*/
+        /*.ia-tbl-wrap table .col-worker {width:100px;}*/
+        .ia-tbl-wrap table .col-memo {width:25%;}
+        @media (max-width:1366px){
+            /*.ia-tbl-wrap table .col-url {width:auto;}*/
+            /*.ia-tbl-wrap table .col-date,*/
+            /*.ia-tbl-wrap table .col-worker {width:100px;}*/
+            .ia-tbl-wrap table .col-memo {width:25%;}
+        }
+
+        @media screen and (max-width: 640px) {
+
+            .ia-legend {position:relative;left:0;}
+            .ia-tbl-wrap table thead{
+                display: none;
+            }
+            .ia-tbl-wrap table tr td{
+                position:relative;
+                display: block;
+                width: 100% !important;
+                height:auto;
+                min-height:30px;
+                border-top: none;
+                border-bottom: 1px solid #ccc;
+                table-layout: fixed;
+                padding-left:95px !important;
+                text-align:left;
+                border-left:0;
+            }
+            .ia-tbl-wrap table tbody + tbody tr:first-child td {border-top:0 solid #ccc;}
+            .ia-tbl-wrap table tr td:before{
+                content:attr(data-label);
+                display: inline-block;
+                width: 90px;
+                height:100%;
+                padding: 0.3em 0.5em;
+                background: #f4f8fb;
+                text-align:left;
+                position:absolute;top:0;left:0;
+
+
+            }
+            .ia-tbl-wrap table tr td .text{
+                display: table-cell;
+                word-break: break-all;
+                padding: 0.3em 0.5em;
+            }
+            .ia-tbl-wrap table tr td:last-child{
+                border-bottom: 2px solid #96acbf;
+            }
+        }
+
+        @media only screen and (max-width: 720px) {
+
+            .ia-header-wrapper {height:80px;}
+            .ia-header-wrapper .ia-section {padding-top:35px}
+            .ia-header-wrapper .ia-section .ia-h1{width:100%;text-align:center;}
+
+            .ia-section {padding:0 10px}
+            .ia-content-body {padding:80px 10px 50px}
+
+            .ia-header-wrapper .ia-guide-link {display: none;}
+
+
+            .ia-header-wrapper .ia-header-guide-mobile {display: block;}
+
+            .ia-header-guide-mobile { position: absolute;top:0;right:0;width:100%;}
+            .ia-header-guide-mobile > .g-node-title {display:inline-block; line-height:1.4; padding:10px 10px; width:100%; color:#0d3258; background-color:#fff;
+                position: absolute;top:0;}
+            .ia-header-guide-mobile > ul {display:none;margin-top:35px;}
+            .ia-header-guide-mobile > ul > li {display:none;background-color:#ec1f2f;text-align: center;line-height: 1.4;}
+            .ia-header-guide-mobile > ul > li >a {display: inline-block;padding:10px 10px;color:#fff;font-size: 11px;}
+            .ia-header-guide-mobile.is-visible > ul,
+            .ia-header-guide-mobile.is-visible > ul > li {display:block;}
+
+        }
+
+        .ia-desc {line-height:1.6;}
+
+        /* Setting */
+        .c-done > * {color:rgb(255, 104, 104) !important;}
+        .t-red {color:#ec1f2f;}
+        td.col-url a {border-bottom:1px solid #333;}
+
+        .ia-tbl-wrap table tr.row-done td {background-color:#e7f5ff;}
+        .ia-tbl-wrap table tr.row-done-update td {background-color:#dcf5e7;}
+        .ia-tbl-wrap table tr.row-done-new td {background-color:#fff6d6;}
+
+        .state {display:inline-block;height:20px;padding:0 5px;font-weight:bold;font-size:12px;color:#000;}
+        .state.row-done {background-color:#e7f5ff;}
+        .state.row-done-update {background-color:#dcf5e7;}
+        .state.row-done-new {background-color:#fff6d6;}
+    </style>
+</head>
+<body>
+<div class="ia-wrapper">
+    <div class="ia-header-wrapper">
+        <div class="ia-section">
+            <h1 class="ia-h1">신한챗봇 몰리 - 퍼블리싱 현황판 </h1>
+
+        </div>
+    </div>
+    <div class="ia-container">
+        <div class="ia-content">
+
+            <div class="ia-content-body">
+                <!-- Total -->
+                <section class="ia-section">
+                    <div class="ia-section-body">
+                        <div class="ia-h4 ia-total-legend">
+                            <span class="item c-last-date"><em>최종수정일 : </em><em class="value">1</em> /</span>
+                            <span class="item c-total"><em>총 페이지 : </em><em class="value">30</em> /</span>
+                            <span class="item c-done"><em>총 완료 : </em><em class="value">1</em> (</span>
+                            <span class="item c-done-new"><em>신규완료 : </em><em class="value">1</em> /</span>
+                            <span class="item c-done-update"><em>수정완료 : </em><em class="value">1</em> )</span>
+                        </div>
+                        <div class="ia-graph">
+                            <ul class="graph"></ul>
+                        </div>
+                    </div>
+                </section>
+                <!-- //Total -->
+
+                <!-- Note -->
+                <section class="ia-section">
+                    <div class="ia-note-wrap">
+                        <div class="ia-box ia-box-note">
+                            <div class="ia-box-header">
+                                <h4 class="ia-h4">Note</h4>
+                            </div>
+                            <div class="ia-box-body">
+                                <ul class="ia-desc">
+                                    <li>※ 유형 표시방법 - Html, LP : Layer Popup, WP : Window Popup</li>
+                                    <li>※ IA 기준으로 목록 업데이트 필요</li>
+                                    <li>1. 진척관리 - 최초 완료표시 기준으로 날짜를 표시</li>
+                                    <li>2. 수정관리 - 최조 완료표시 날짜에 [YY-MM-DD / (br) YY-MM-DD]수정날짜를 추가한다. </li>
+                                    <li>3. 결함관리 - 신규/수정/삭제 이슈가 있는 경우 소스코드와 비고란에 동일한 주석문구를 표시한다. (주석표기 예시 - 181130 홍길동 작업내용 수정)</li>
+                                    <li>4. 최조 완료시 상태항목에 [완료]</li>
+                                    <li>5. 상태값에 [완료] 문구 등록시 완료페이지로 표시됨. </li>
+                                    <li>6. Row 컬러 상태
+                                        <span class="state row-done-new">최신완료 </span>
+                                        <span class="state row-done-update">기존완료지만 추가수정됨 </span>
+                                        <span class="state row-done">이전완료 </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- //Note -->
+
+                <!-- 00_PC_Guide -->
+                <section class="ia-section ia-section-list">
+                    <div class="ia-section-header">
+                        <h2 class="ia-h2"><a href="#this" class="ui-accordion-toggle">PC-Guide </a></h2>
+                        <div class="ia-legend">
+                            <span class="item"><em>총 페이지 : </em><em class="legend-total">30</em> /</span>
+                            <span class="item c-done"><em>완료 : </em><em class="legend-complete">1</em> /</span>
+                            <span class="item"><em>진척률 : </em><em class="legend-process">3%</em></span>
+                        </div>
+                    </div>
+                    <div class="ia-section-body">
+                        <div class="ia-tbl-wrap">
+                            <table>
+                                <caption></caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">번호</th>
+                                    <th scope="col" class="col-1depth">1Depth</th>
+                                    <th scope="col" class="col-2depth">2Depth</th>
+                                    <th scope="col" class="col-3depth">3Depth</th>
+                                    <th scope="col" class="col-point">유형</th>
+                                    <th scope="col">URL</th>
+                                    <th scope="col" class="col-date">날짜</th>
+                                    <th scope="col">상태</th>
+                                    <th scope="col">비고</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">01_layout</td>
+                                    <td class="col-3depth" data-label="3Depth">최종파일은 PC/02_메뉴__01Default 참고</td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__01_layout.html" target="_blank">html/pc/01_guide__01_layout.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-23<br>/20-05-11</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190730]testMsgAdd 메시지 시간추가
+                                            <br>[20190821][저를불러보세요] html - 아이콘관련수정
+                                            <br>[20200429]
+                                            <br>1. 이벤트 배너 DOM구조, swipe 실행 script 추가
+                                            <br>2. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>3. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>4. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200511]
+                                            <br>1. 기존 메인메뉴 swiper 삭제, 신한인 인기질문 swiper 실행 스크립트 추가
+                                            <br>2. 전체메뉴 UI 변경되어 DOM구조 전면수정
+                                            <br>3. 메일그룹관리 추가
+                                            <br>4. 메일그룹 추가/편집 팝업 추가
+                                            <br>5. 이벤트 배너 타입 추가(point, event, notice, recommend)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">02_button</td>
+                                    <td class="col-3depth" data-label="3Depth">Button/Icon</td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__02_button.html" target="_blank">html/pc/01_guide__02_button.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-23<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190930]버튼 추가 및 수정
+                                            <br>[20190821] bicbutton - 아이콘 가이드추가(타입은 디자인완료후 작업예정)
+                                            <br>[20200515] util 스크랩 버튼 추가, 다른 방법으로 검색 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">03_form</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__03_form.html" target="_blank">html/pc/01_guide__03_form.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-06</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190806] selectbox/textarea 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">04_chat</td>
+                                    <td class="col-3depth" data-label="3Depth">채팅컨텐츠 가이드</td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__04_chat.html" target="_blank">html/pc/01_guide__04_chat.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-30<br>/19-08-21</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [19-08-21]
+                                            <br>1. 챗봇 말풍선하단 유틸 - [다른방법으로검색] 버튼추가
+                                            <br>2.[저를불러보세요] html - 아이콘관련수정
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">05_moli Icon</td>
+                                    <td class="col-3depth" data-label="3Depth">몰리 채팅 이모티콘 아이콘</td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__05_moli_icon.html" target="_blank">html/pc/01_guide__05_moli_icon.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-21</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">11_tooltip</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__11_tooltip.html" target="_blank">html/pc/01_guide__11_tooltip.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-30</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">01_guide</td>
+                                    <td class="col-2depth" data-label="2Depth">12_popup</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/01_guide__12_popup.html" target="_blank">html/pc/01_guide__12_popup.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-06</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- //00_PC_Guide -->
+
+                <!-- 00_PC -->
+                <section class="ia-section ia-section-list">
+                    <div class="ia-section-header">
+                        <h2 class="ia-h2"><a href="#this" class="ui-accordion-toggle">PC </a></h2>
+                        <div class="ia-legend">
+                            <span class="item"><em>총 페이지 : </em><em class="legend-total">30</em> /</span>
+                            <span class="item c-done"><em>완료 : </em><em class="legend-complete">1</em> /</span>
+                            <span class="item"><em>진척률 : </em><em class="legend-process">3%</em></span>
+                        </div>
+                    </div>
+                    <div class="ia-section-body">
+                        <div class="ia-tbl-wrap">
+                            <table>
+                                <caption></caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">번호</th>
+                                    <th scope="col" class="col-1depth">1Depth</th>
+                                    <th scope="col" class="col-2depth">2Depth</th>
+                                    <th scope="col" class="col-3depth">3Depth</th>
+                                    <th scope="col" class="col-point">유형</th>
+                                    <th scope="col">URL</th>
+                                    <th scope="col" class="col-date">날짜</th>
+                                    <th scope="col">상태</th>
+                                    <th scope="col">비고</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">02_메뉴</td>
+                                    <td class="col-2depth" data-label="2Depth">01_Default</td>
+                                    <td class="col-3depth" data-label="3Depth">
+                                        - Aside 메뉴 (Menu Icon add)
+                                        <br>- 웰컴메시지
+                                        <br>- 연관검색어
+                                    </td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/02_menu__01_default.html" target="_blank">html/pc/02_menu__01_default.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-30<br>/20-05-19</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190821][저를불러보세요] html - 아이콘관련수정
+                                            <br>[20190829]
+                                            <br>1. 연관검색어 - radio 마크업수정
+                                            <br>2. 연관검색어 - 닫기버튼 추가
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 이벤트 배너 DOM구조, swipe 실행 script 추가
+                                            <br>2. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>3. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>4. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200511]
+                                            <br>1. 기존 메인메뉴 swiper 삭제, 신한인 인기질문 swiper 실행 스크립트 추가
+                                            <br>2. 전체메뉴 UI 변경되어 DOM구조 전면수정
+                                            <br>3. 메일그룹관리 추가
+                                            <br>4. 메일그룹 추가/편집 팝업 추가
+                                            <br>5. 이벤트 배너 타입 추가(point, event, notice, recommend)
+                                            <br>[20200515]
+                                            <br>1. util 스크랩 버튼 추가, 다른 방법으로 검색 추가
+                                            <br>2. 재무제표 자동입력 메뉴 확인용 추가
+                                            <br>[20200519]
+                                            <br>1. 스크랩 리스트, 확인, 상세 추가
+                                            <br>2. 스크랩 편집, 편하게 편집하기 팝업 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">02_메뉴</td>
+                                    <td class="col-2depth" data-label="2Depth">01_Default</td>
+                                    <td class="col-3depth" data-label="3Depth">웰컴메시지 -menu icon CASE</td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/02_menu__02_welcomemenu.html" target="_blank">html/pc/02_menu__02_welcomemenu.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-29<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200515]
+                                            <br>1. 재무제표 자동입력 메뉴 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">03_CHATTING</td>
+                                    <td class="col-2depth" data-label="2Depth">01_TEXT</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/03_chat__01_text.html" target="_blank">html/pc/03_chat__01_text.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-30<br>/20-04-29</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190821][저를불러보세요] html - 아이콘관련수정
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">03_CHATTING</td>
+                                    <td class="col-2depth" data-label="2Depth">02_CONTENT</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/03_chat__02_content.html" target="_blank">html/pc/03_chat__02_content.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-07-30<br>/20-05-11</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190821]
+                                            <br>1. CASE _110. 청약가능 - tag 버튼으로 변경
+                                            <br>2. CASE _120. 청약불가 - tag 버튼으로 변경
+                                            <br>3. [저를불러보세요] html - 아이콘관련수정
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200511]
+                                            <br>1. CASE_220. 로봇 업무의뢰 결과 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">03_CHATTING</td>
+                                    <td class="col-2depth" data-label="2Depth">03_SEARCH</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/03_chat__03_search.html" target="_blank">html/pc/03_chat__03_search.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-06<br>/20-04-29</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190821][저를불러보세요] html - 아이콘관련수정
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">04_popup</td>
+                                    <td class="col-2depth" data-label="2Depth">01_default</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/04_popup__01_default.html" target="_blank">html/pc/04_popup__01_default.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-06<br>/20-05-19</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190821]
+                                            <br>1. POP_160. 학습입력 - js-textarea add
+                                            <br>2. [저를불러보세요] html - 아이콘관련수정
+                                            <br>[20190829]
+                                            <br>1. POP_140. 서비스오류/수정알림 - 아이콘수정
+                                            <br>2. POP_150. 지식검증요청 - 아이콘수정
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200511]
+                                            <br>1. POP_210.재무제표 정보 입력 추가
+                                            <br>[20200519]
+                                            <br>1. CHAT_200. 쪽지보내기 팝업 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">05_loading</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/05_loading.html" target="_blank">html/pc/05_loading.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-29<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200515] 로봇(RPA) 업무의뢰 로딩 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">06_ICON BTN</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/06_button_icon.html" target="_blank">html/pc/06_button_icon.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-29<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. 메뉴명 수정(마이메뉴 -&gt; MY 몰리)
+                                            <br>2. 메뉴 추가(나의 스크랩, 학습현황, 메뉴 활용법)
+                                            <br>3. HOME 버튼 텍스트 추가, "저를 불러보세요!" gif 이미지  -&gt; 텍스트로 수정, 몰리 아이콘 마우스 오버시 노출
+                                            <br>[20200515]
+                                            <br>1. 재무제표 자동입력 버튼 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">07_splash_01</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/07_splash_01.html" target="_blank">html/pc/07_splash_01.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-09-04</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">07_splash_02</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/pc/07_splash_02.html" target="_blank">html/pc/07_splash_02.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-09-04</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- //00_PC -->
+
+
+
+                <!-- 00_MO_Guide -->
+                <section class="ia-section ia-section-list">
+                    <div class="ia-section-header">
+                        <h2 class="ia-h2"><a href="#this" class="ui-accordion-toggle">MO </a></h2>
+                        <div class="ia-legend">
+                            <span class="item"><em>총 페이지 : </em><em class="legend-total">30</em> /</span>
+                            <span class="item c-done"><em>완료 : </em><em class="legend-complete">1</em> /</span>
+                            <span class="item"><em>진척률 : </em><em class="legend-process">3%</em></span>
+                        </div>
+                    </div>
+                    <div class="ia-section-body">
+                        <div class="ia-tbl-wrap">
+                            <table>
+                                <caption></caption>
+                                <thead>
+                                <tr>
+                                    <th scope="col">번호</th>
+                                    <th scope="col" class="col-1depth">1Depth</th>
+                                    <th scope="col" class="col-2depth">2Depth</th>
+                                    <th scope="col" class="col-3depth">3Depth</th>
+                                    <th scope="col" class="col-point">유형</th>
+                                    <th scope="col">URL</th>
+                                    <th scope="col" class="col-date">날짜</th>
+                                    <th scope="col">상태</th>
+                                    <th scope="col">비고</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">02_메뉴	</td>
+                                    <td class="col-2depth" data-label="2Depth">01_Default	</td>
+                                    <td class="col-3depth" data-label="3Depth">
+                                        - Aside 메뉴
+                                        <br>- 웰컴메시지
+                                        <br>- 연관검색어
+                                    </td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/02_menu__01_default.html" target="_blank">html/mo/02_menu__01_default.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-21<br>/20-05-19</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190829]
+                                            <br>1. 연관검색어 - radio 마크업수정
+                                            <br>2. 연관검색어 - 닫기버튼 추가
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 메뉴 삭제(튜토리얼 버튼, 튜토리얼 컨텐츠)
+                                            <br>5. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                            <br>6. 이벤트 배너 DOM구조, swipe 실행 스크립트 추가
+                                            <br>[20200511]
+                                            <br>1. 기존 메인메뉴 swiper 삭제, 신한인 인기질문 swiper 실행 스크립트 추가
+                                            <br>2. 전체메뉴 UI 변경되어 DOM구조 전면수정
+                                            <br>3. 메일그룹관리 추가
+                                            <br>4. 메일그룹 추가/편집 팝업 추가
+                                            <br>5. 이벤트 배너 타입 추가(point, event, notice, recommend)
+                                            <br>[20200515]
+                                            <br>1. util 스크랩 버튼 추가, 다른 방법으로 검색 추가
+                                            <br>2. 재무제표 자동입력 메뉴 확인용 추가
+                                            <br>[20200519]
+                                            <br>1. 스크랩 리스트, 확인, 상세 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">02_메뉴</td>
+                                    <td class="col-2depth" data-label="2Depth">01_Default</td>
+                                    <td class="col-3depth" data-label="3Depth">웰컴메시지 -menu icon CASE</td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/02_menu__02_welcomemenu.html" target="_blank">html/mo/02_menu__02_welcomemenu.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-29<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                            <br>[20200515]
+                                            <br>1. 재무제표 자동입력 메뉴 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호">2</td>
+                                    <td class="col-1depth" data-label="1Depth">03_CHATTING</td>
+                                    <td class="col-2depth" data-label="2Depth">01_TEXT</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/03_chat__01_text.html" target="_blank">html/mo/03_chat__01_text.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-21<br>/20-04-29</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호">3</td>
+                                    <td class="col-1depth" data-label="1Depth">03_CHATTING</td>
+                                    <td class="col-2depth" data-label="2Depth">02_CONTENT</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/03_chat__02_content.html" target="_blank">html/mo/03_chat__02_content.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-21<br>/20-05-11</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                            <br>[20200511]
+                                            <br>1. CASE_220. 로봇 업무의뢰 결과 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="row-done">
+                                    <td class="col-num" data-label="번호">4</td>
+                                    <td class="col-1depth" data-label="1Depth">03_CHATTING</td>
+                                    <td class="col-2depth" data-label="2Depth">03_SEARCH</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/03_chat__03_search.html" target="_blank">html/mo/03_chat__03_search.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-21<br>/20-04-29</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="row-done">
+                                    <td class="col-num" data-label="번호">5</td>
+                                    <td class="col-1depth" data-label="1Depth">04_popup</td>
+                                    <td class="col-2depth" data-label="2Depth">01_default</td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/04_popup__01_default.html" target="_blank">html/mo/04_popup__01_default.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-21<br>/20-05-19</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            [20190829]
+                                            <br>1. POP_140. 서비스오류/수정알림 - 아이콘수정
+                                            <br>2. POP_150. 지식검증요청 - 아이콘수정
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                            <br>[20200511]
+                                            <br>1. POP_210.재무제표 정보 입력 추가
+                                            <br>[20200519]
+                                            <br>1. CHAT_200. 쪽지보내기 팝업 추가
+                                            <br>2. CHAT_220. PC 서비스 안내 팝업 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">05_loading</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/05_loading.html" target="_blank">html/mo/05_loading.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-29<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                            <br>[20200515] 로봇(RPA) 업무의뢰 로딩 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">06_ICON BTN</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/06_button_icon.html" target="_blank">html/mo/06_button_icon.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-08-29<br>/20-05-15</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+                                            <br>[20191231]
+                                            <br>1. mCustomScroll 제거(layout.mo.css/plugin.override.mo.css)
+                                            <br>[20200424]
+                                            <br>1. 추천키워드 UI 변경
+                                            <br>[20200429]
+                                            <br>1. HOME 버튼 아이콘 추가, "저를 불러보세요!" gif 이미지 삭제
+                                            <br>2. 메뉴 추가(나의 스크랩)
+                                            <br>3. 메뉴명 수정(마이메뉴 -> MY 몰리)
+                                            <br>4. 로그아웃 버튼 위치 변경(메뉴 > 설정 > 로그아웃 -> 메뉴 오픈시 전체메뉴 탭 상단에 위치하도록 수정)
+                                            <br>[20200515]
+                                            <br>1. 재무제표 자동입력 버튼 추가
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">07_splash_01</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/07_splash_01.html" target="_blank">html/mo/07_splash_01.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-09-04</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-num" data-label="번호"></td>
+                                    <td class="col-1depth" data-label="1Depth">07_splash_02</td>
+                                    <td class="col-2depth" data-label="2Depth"></td>
+                                    <td class="col-3depth" data-label="3Depth"></td>
+                                    <td class="col-type" data-label="유형"></td>
+                                    <td class="col-url" data-label="URL"><a href="html/mo/07_splash_02.html" target="_blank">html/mo/07_splash_02.html</a></td>
+                                    <td class="col-date" data-label="날짜">19-09-04</td>
+                                    <td class="col-complete" data-label="상태">완료</td>
+                                    <td class="col-memo" data-label="비고">
+                                        <button type="button" class="btn-memo">Comment</button>
+                                        <div class="col-memo-con">
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <!-- //00_MO_Guide -->
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var ia = {
+        init : function(){
+            var _this = this;
+            var lens = $('.ia-section-list').length;
+
+            $('.ia-section-list').each(function(i){
+                var file = $(this).data('file');
+                var color = $(this).data('color');
+                var graphHtml =
+                    '<li>'
+                    +'	<a href="#gIA'+i+'">'
+                    +'		<span class="tit"><!-- 자동입력 --></span>'
+                    +'		<span class="bar" data-color="#ff6868"><span class="active"></span></span>'
+                    +'		<span class="pages"><em class="graph-complete"></em>/<em class="graph-total"></em></span>'
+                    +'	</a>'
+                    +'</li>';
+
+                $(this).attr('id', 'gIA'+i);
+                $('.ia-graph .graph').append(graphHtml);
+
+                _this.cal('#gIA'+i, i);
+            }).promise().done(function () {
+
+                //console.log ( 'len',  $('.ia-tbl-wrap').find('.row-done-new').length );
+                $(".ia-total-legend .c-total .value").text ($('.ia-tbl-wrap').find('tbody > tr').length);
+                $(".ia-total-legend .c-done .value").text ($('.ia-tbl-wrap').find('.row-done').length + $('.ia-tbl-wrap').find('.row-done-new').length + $('.ia-tbl-wrap').find('.row-done-update').length );
+                $(".ia-total-legend .c-done-new .value").text ($('.ia-tbl-wrap').find('.row-done-new').length);
+                $(".ia-total-legend .c-done-update .value").text ($('.ia-tbl-wrap').find('.row-done-update').length);
+            });
+
+
+
+
+        },
+        cal : function(obj, idx){
+
+
+            var lastUpdateDate = String(findLastUpdateDate(obj));//날짜중 최종완료날짜 찾아옴
+            var today = lastUpdateDate.substr(0, 2) + '-' + lastUpdateDate.substr(2,2)+ '-' + lastUpdateDate.substr(4,2);
+
+            $(obj).find('td.col-complete').each(function(n){
+
+                var text = $(this).text();
+                var completedd = $(this).siblings('.col-date').text().toString();
+                //완료,수정날짜있는경우 마지막날짜로 체크
+                var lastdate = (completedd.indexOf('/')==-1) ? completedd.trim():completedd.toString().split('/')[1].trim();
+                //console.log(lastdate, today);
+                if ( (completedd.indexOf('/') == -1) && text == "완료" && lastdate == today.toString()){
+                    $(this).parent('tr').addClass('row-done-new');//노란색
+                }else if ( (completedd.indexOf('/') != -1) && lastdate == today.toString()){
+                    $(this).parent('tr').addClass('row-done-update');//초록색
+                    $(this).parent('tr').find('.col-complete').text("수정");//20190930 수정
+                }else if ( text == "완료" ){
+                    $(this).parent('tr').addClass('row-done');//하늘색
+                }
+            });
+
+
+            //계산
+            var cal_total = $(obj).find('.ia-tbl-wrap tbody > tr').length;//총페이지갯수
+            var cal_complete = $(obj).find('.row-done , .row-done-update, .row-done-new').length;//완료페이지
+            var cal_process = Math.round((cal_complete/cal_total)*100);
+
+            //그래프
+            var graph = $('.ia-graph a[href="'+obj+'"]');
+            var graph_tit = $(graph).find('.tit');
+            var graph_total = $(graph).find('.graph-total');
+            var graph_complete = $(graph).find('.graph-complete');
+            var graph_process = $(graph).find('.bar');
+            var graph_active = $(graph).find('.bar .active');
+            graph_total.text(cal_total);
+            graph_complete.text(cal_complete);
+            graph_process.attr('data-process', cal_process+'%');
+            graph_active.css({backgroundColor:graph_process.data('color'), width:cal_process+'%'});
+
+            //범례
+            var legend_total = $(obj).find('.legend-total');
+            var legend_complete = $(obj).find('.legend-complete');
+            var legend_process = $(obj).find('.legend-process');
+            legend_total.text(cal_total);
+            legend_complete.text(cal_complete);
+            if (cal_complete > 0){legend_process.text(cal_process+'%')}
+            else {legend_process.text('0%')}
+
+            //리스트
+            var ia_num = $(obj).find('.col-num');
+            graph_tit.html(ia_tit);
+
+            //넘버링
+            for (var i=0;i < cal_total;i++){
+                ia_num.eq(i).text(i+1);
+            }
+
+            /*20190516 update*/
+            //리스트
+            var ia_tit = $(obj).find('.ia-h2 > a').text();
+            $(obj).find('.ia-h2 > a').text('#' + idx + " " + ia_tit);
+            graph_tit.html('#' + idx + " " + ia_tit);
+
+            $(".ia-total-legend .c-last-date .value").text (lastUpdateDate);
+
+            $(obj).find("button.btn-memo").each(function() {
+                if ( $(this).closest("tr").hasClass("row-done-new") || $(this).closest("tr").hasClass("row-done-update") ){
+                    $(this).closest('tr').find(".col-memo").toggleClass("active");
+                }
+                $(this).click(function() {
+                    $(this).closest('tr').find(".col-memo").toggleClass("active");
+                    return false;
+                });
+            });
+        }
+    };
+
+
+    $(document).ready(function(){
+        ia.init();
+    });
+
+
+    function numReturnToZero (a){
+        if (a < 10) {
+            a = '0' + a;
+        }
+        return a;
+    }
+    function findLastUpdateDate (obj){
+
+        var maxdd = 0;
+        var lastdate=0;
+        $('td.col-date').each(function(n){
+
+            var completedd = $(this).text().split('-').join("").trim();
+            completedd = completedd.replace(/ /gi, "");
+            lastdate = (completedd.indexOf('/')==-1) ? Number(completedd):Number(completedd.toString().split('/')[1]);
+            maxdd = Math.max(lastdate, maxdd);
+            //console.log ("---------------", lastdate, completedd, maxdd);
+        });
+        //console.log ( "--------------------recent----",  maxdd );
+        return maxdd;
+
+    }
+
+    function trim(x) {
+        return x.replace(/^\s+|\s+$/gm,'');
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>신한챗봇몰리</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta http-equiv="pragma" content="no-cache" /> <!-- 캐시 사용하지 않는 메타 -->
+    <meta http-equiv="Cache-Control" content="no-cache" /> <!-- 캐시 사용하지 않는 메타 -->
+    <meta http-equiv="Expires" content="0" /> <!-- 캐시 사용하지 않는 메타 -->
+    <meta name="robots" content="noindex, nofollow"><!-- 검색엔진에 노출되지 않게 하는 메타. 상용적용시에는 이부분을 꼭 삭제해주세요!!! -->
+
+    <meta name="msapplication-TileColor" content="#000000"><!-- 모바일 header color -->
+
+    <!-- Plug-In Common
+    ================================================== -->
+    <script type="text/javascript" src="../../resources/js/lib/jquery/jquery-1.9.1.min.js" ></script>
+    <link rel="stylesheet" href="../../resources/css/lib/jquery-ui.css">
+    <script type="text/javascript" src="../../resources/js/lib/jquery.ui/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="../../resources/css/lib/swiper.css">
+    <script src="../../resources/js/lib/swiper/swiper.js"></script>
+
+
+
+    <!-- Plug-In Mobile Only
+    ================================================== -->
+    <script type="text/javascript" src="../../resources/js/lib/jquery.ui/jquery.ui.touch-punch.js"></script>
+
+    <!-- front ui CSS
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="../../resources/css/moli.mo.css" media="all">
+
+
+
+
+    <!-- front ui javascript Mo  -->
+    <script type="text/javascript" src="../../resources/js/temp-common.js" ></script>
+    <script type="text/javascript" src="../../resources/js/ui.mo.js" ></script>
+
+
+
+    <script type="text/javascript">
+
+        $( function() {
+
+            /*1 스크롤 관련 삭제 20191231
+            //aside init
+            //$(".js-aside").mCustomScrollbar();
+
+            //2 chatting init
+            $(".js-chat").mCustomScrollbar({
+                axis:"y",
+                callbacks:{
+                    onScroll:function(){
+                        console.log("onScroll..");
+                    },
+                    onScrollStart:function(){
+                        console.log("onScrollStart..");
+                    },
+                    whileScrolling:function(){//20190806 event onScroll >> whileScrolling 로 수정
+                        //console.log("Content scrolled...", this.mcs.top, $(this).outerHeight() );
+
+                        /!*맨아래로 버튼 show/hide*!/
+                        var scrollpos = $(this).outerHeight() - $(this).find('.mCSB_container').outerHeight();
+                        if ( scrollpos < this.mcs.top ) {
+                            $('.js-go-bottom').removeClass('hide');
+                        }else{
+                            $('.js-go-bottom').addClass('hide');
+                        }
+                        //
+                    }
+                }
+            });*/
+
+
+            //3 스크롤 관련 추가 20191231
+            $(".js-chat").wrap("<div class='chat js-chat'><div class='mCustomScrollBox '></div></div>");
+            $(".js-chat").find('.js-chat').removeClass('chat js-chat').addClass('mCSB_container');
+
+
+            //3 스크롤 관련 추가 20191231
+            $(".js-aside").wrap("<div class='aside js-aside'><div class='mCustomScrollBox '></div></div>");
+            $(".js-aside").find('.js-aside').removeClass('aside js-aside').addClass('mCSB_container');
+
+
+
+
+            //스와이퍼 너무 일찍 init 되서 딜레이줌(오른쪽 끝 짤림)
+            setTimeout(function(){
+
+                /* Comment : 20200511 삭제 | 메인 메뉴 swiper  */
+
+                // 20200511 추가 : 신한인 인기질문 swiper 추가
+                if ($('.js-aside-fame-swiper .fame-item').length > 1 ){
+                    var fameListSwiper = new Swiper($('.js-aside-fame-swiper'), {
+                        spaceBetween: 22,
+                        speed:300,
+                        observer: true,
+                        observeParents: true,
+                        navigation: {
+                            nextEl: '.btn-arrow.next',
+                            prevEl: '.btn-arrow.prev',
+                        },
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                    });
+                }
+
+                /* Comment : 200424 삭제 | 추천키워드 swiper 삭제 */
+
+                //디폴트 맨아래로
+                //$(".js-chat").mCustomScrollbar("scrollTo","bottom",{scrollInertia:0});
+
+            }, 300);
+
+
+            //test
+            //asideOpen(3);
+
+            eventSwiperInit(); /* 200429 추가 | 이벤트 swiper 실행 함수 추가 */
+        });
+
+
+        /*4 - 20191231 스크롤 관련 추가*/
+        $(document).ready(function() {
+            //console.log("ready");
+
+            $('.js-chat .mCustomScrollBox').scroll(function(event){
+                //console.log("scrolled...", $('.js-chat .mCustomScrollBox').scrollTop(), $('.js-chat .mCSB_container').height() );
+                /*맨아래로 버튼 show/hide*/
+                var scrollpos = -($(".js-chat").outerHeight() - $('.js-chat .mCSB_container').height());
+
+                //console.log(scrollpos, $(".js-chat").outerHeight());
+
+                if ( scrollpos > $('.js-chat .mCustomScrollBox').scrollTop() ) {
+                    $('.js-go-bottom').removeClass('hide');
+                }else{
+                    $('.js-go-bottom').addClass('hide');
+                }
+            });
+
+            $('.js-go-bottom').click(function(e){
+
+                $('.js-chat .mCustomScrollBox ').scrollTop($('.js-chat .mCSB_container').height());
+            });
+
+        });
+
+
+
+        /*텍스트 추가 입력 테스트 버튼 스크롤 하단으로 내려줘야함*/
+        function testMsgAdd() {
+            //console.log('testMsgAdd');
+            $('.js-chat .mCSB_container').append('<div class="c-msg user"><div class="inner">텍스트 추가 입력 테스트<span class="time">오후 01:00</span></div></div>');
+            //$(".js-chat").mCustomScrollbar("scrollTo","bottom",{scrollInertia:0});
+
+            //5- 스크롤 하단이동 수정 20191231
+            $('.js-chat .mCustomScrollBox ').scrollTop($('.js-chat .mCSB_container').height());
+        }
+    </script>
+
+</head>
+<body>
+    <!--hide title-->
+    <h1 class="offscreen">신한챗봇 몰리</h1>
+    <div class="wrapper">
+
+        <!--S:nav-->
+        <div class="nav">
+            <h2 class="offscreen">메뉴</h2>
+            <!--S:Pc/모바일다름-->
+            <div class="hi-moli">
+                <a href="#" class="btn-nav-moli">
+                    <!-- S : 20200429 수정 | "저를 불러보세요" gif 이미지 삭제, home icon 추가 -->
+                    <i class="ico ico-home"></i>
+                    <img class="logo" src="../../resources/images/mo/common/logo.png" />
+                    <!-- E : 20200429 수정 | "저를 불러보세요" gif 이미지 삭제, home icon 추가 -->
+                </a>
+            </div>
+            <!--E:mo-->
+
+            <!--메뉴버튼-->
+            <a href="#" class="btn-aside-open js-btn-aside-open" onclick="asideOpen(0);">
+                <i class="ico ico-aside"></i><span class="offscreen">메뉴열기</span>
+            </a>
+
+        </div>
+        <!--E:nav-->
+
+        <!--S:aside pc 다름-->
+        <div class="aside js-aside">
+
+            <!--S: 마크업 PC 다름-->
+            <ul class="nav-list js-nav-list">
+                <li class="item">
+                    <a href="#" class="js-menu-open" data-idx="0" data-href="js-aside-menu" onclick="asideOpen(0);">
+                        <em class="lb">전체메뉴</em>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="js-menu-open" data-idx="1" data-href="js-aside-menu" onclick="asideOpen(1);">
+                        <!-- S : 20200429 수정 | 메뉴명 변경 -->
+                        <em class="lb">MY 몰리</em>
+                        <!-- E : 20200429 수정 | 메뉴명 변경 -->
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="js-menu-open" data-idx="2"  data-href="js-aside-menu" onclick="asideOpen(2);">
+                        <em class="lb">최근질문</em>
+                    </a>
+                </li>
+            </ul>
+
+            <!--S:전체메뉴-->
+            <div class="aside-cont aside-allmenu js-aside-menu js-aside-menu-0">
+                <div class="aside-inner">
+                    <h3 class="offscreen">전체메뉴</h3>
+
+                    <!-- S : 20200511 수정 | 전체메뉴 UI 수정 -->
+                    <!--S:신한인인기질문-->
+                    <div class="fame-wrap">
+                        <div class="mtitle">신한인 <em>인기 질문</em></div>
+                        <div class="list-wrap js-aside-fame-swiper">
+                            <div class="fame-swiper-wrap swiper-wrapper">
+                                <ol class="fame-item swiper-slide">
+                                    <li><em>01</em><a href="#" class="ellipsis">금융시장 정보조회 해줘</a><span class="num">999+</span></li>
+                                    <li><em>02</em><span class="ellipsis">알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘</span><span class="num">999+</span></li>
+                                    <li><em>03</em><a href="#" class="ellipsis">본부부서 담당자 조회해줘</a><span class="num">999+</span></li>
+                                    <li><em>04</em><a href="#" class="ellipsis">오늘 날씨 알려줘</a><span class="num">999+</span></li>
+                                    <li><em>05</em><a href="#" class="ellipsis">오늘 본점 점심메뉴 알려줘</a><span class="num">999+</span></li>
+                                </ol>
+                                <ol class="fame-item swiper-slide">
+                                    <li><em>06</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                    <li><em>07</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                    <li><em>08</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                    <li><em>09</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                    <li><em>10</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                </ol>
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <!--E:신한인인기질문-->
+
+                    <!--S:menu-wrap-->
+                    <div class="menu-wrap">
+                        <div class="menu-header">
+                            <div class="mtitle">전체 <em>메뉴</em></div>
+                            <select class="ui-sel">
+                                <option value="">인기순</option>
+                                <option value="">가나다순</option>
+                            </select>
+                            <a href="#" class="btn-search-menu js-btn-search-menu" onclick="javascript: mmenuSearchToggle();"><i class="ico ico-mmenu-search"></i><span class="offscreen">메뉴 검색</span></a>
+                        </div>
+
+                        <div class="mmenu-search-box js-mmenu-search-box">
+                            <input type="text" class="js-mmenu-search-keyword" placeholder="메뉴명을 입력하세요." />
+                            <a href="#" class="btn-pos" onclick=" javascript: testMmenuSearch('.js-main-menu-wrap');">검색</a>
+                        </div>
+
+                        <ul class="list hover js-latest-list">
+                            <!-- DESC : 최근메뉴가 없는경우 li.js-latest-item 모두 삭제해주세요 -->
+                            <!-- s : repeat -->
+                            <li class="item js-latest-item">
+                                <!-- 20200515 수정 : 재무제표 자동입력 확인용 추가 -->
+                                <a href="#" class="link"><i class="ico ico-mmenu49"></i><em class="lb">재무제표<br>자동입력</em></a>
+                                <div class="btns js-btns">
+                                    <a href="#" class="btn-mini-fn delete" onclick="javascript: latestMenuRemove($(this));"><i class="ico ico-10-x-purple"></i><span class="offscreen">삭제</span></a>
+                                </div>
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="item js-latest-item">
+                                <a href="#" class="link"><i class="ico ico-mmenu02"></i><em class="lb">알림톡<br>안내발송</em></a>
+                                <div class="btns js-btns">
+                                    <a href="#" class="btn-mini-fn delete" onclick="javascript: latestMenuRemove($(this));"><i class="ico ico-10-x-purple"></i><span class="offscreen">삭제</span></a>
+                                </div>
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="item js-latest-item">
+                                <a href="#" class="link"><i class="ico ico-mmenu03"></i><em class="lb">금융사기<br>본점접수</em></a>
+                                <div class="btns js-btns">
+                                    <a href="#" class="btn-mini-fn delete" onclick="javascript: latestMenuRemove($(this));"><i class="ico ico-10-x-purple"></i><span class="offscreen">삭제</span></a>
+                                </div>
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat - 최근메뉴 없는경우 -->
+                            <li class="item js-latest-item">
+                                <div class="link add"><i class="ico ico-alert24"></i><em class="lb">최근메뉴가<br>없습니다</em></div>
+                            </li>
+                            <!-- E : repeat - 최근메뉴 없는경우 -->
+                        </ul>
+
+                        <div class="main-menu-wrap js-main-menu-wrap">
+                            <!-- S : 검색결과 없는 경우 -->
+                            <div class="nodata">
+                                <i class="ico ico-nodata-alert"></i>
+                                <span class="txt">
+                                    검색된 정보가 없습니다.
+                                </span>
+                            </div>
+                            <!-- E : 검색결과 없는 경우 -->
+
+                            <!-- S : 전체메뉴 리스트, 검색결과 있는경우 -->
+                            <ul class="menu-list js-menu-list">
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn01"></i><span class="lb">금융시장정보조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn02"></i><span class="lb">알림톡 안내발송</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn03"></i><span class="lb">금융사기 본점접수</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn04"></i><span class="lb">Find 서류확인</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn05"></i><span class="lb">업무양식 외부발송</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn06"></i><span class="lb">본부부서 담당조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn07"></i><span class="lb">금융거래 목적확인</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn08"></i><span class="lb">전세대출 상품추천</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn09"></i><span class="lb">e-HR 정보조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn10"></i><span class="lb">청약주택 현황조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn11"></i><span class="lb">청약가능 순위점검</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn12"></i><span class="lb">날씨조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn13"></i><span class="lb">부서카드 사용내역</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn14"></i><span class="lb">예금상품 간편조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn15"></i><span class="lb">펀드수익률 간편조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn16"></i><span class="lb">양수도 계좌이동</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn17"></i><span class="lb">신용대출 상품조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn18"></i><span class="lb">주택담보 대출접수</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn19"></i><span class="lb">개인사업자 신용평가</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn20"></i><span class="lb">담보대출 한도간편산출</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn21"></i><span class="lb">채무인수 간편안내</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn22"></i><span class="lb">법인월보 간편조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn23"></i><span class="lb">통화별 환율내역</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn24"></i><span class="lb">외환타발 송금내도내역</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn25"></i><span class="lb">외환송금 사유코드</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn26"></i><span class="lb">신용장매입 심사안내</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn27"></i><span class="lb">신규서류 간편안내</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn28"></i><span class="lb">공카드 재고조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn29"></i><span class="lb">지점월별 손익조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn30"></i><span class="lb">경비예산 현황조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn31"></i><span class="lb">고객정보 보호관리</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn32"></i><span class="lb">자점검사처리 대상조회</span></a></li>
+
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn33"></i><span class="lb">아파트 시세조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn34"></i><span class="lb">주택담보대출 규제비율조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn35"></i><span class="lb">담보인정 비율조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn36"></i><span class="lb">소액보증금 산출시산</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn37"></i><span class="lb">감정평가 네비게이터</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn38"></i><span class="lb">기업재무등급 시뮬레이션</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn39"></i><span class="lb">기업여신 금리시산</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn40"></i><span class="lb">기업상황별 추천솔루션</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn41"></i><span class="lb">기업여신 전결기준표</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn42"></i><span class="lb">수신담보 대출비교</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn43"></i><span class="lb">고객확인 징구서류</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn44"></i><span class="lb">투자상품 정보조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn45"></i><span class="lb">수신상품 금리조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn46"></i><span class="lb">점번호 간편조회</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn47"></i><span class="lb">온라인 등기 신청</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn48"></i><span class="lb">외환2D 신청서</span></a></li>
+                                <li><a href="#" class="btn-mmenu"><i class="ico ico-btn49"></i><span class="lb">재무제표 자동입력</span></a></li>
+                            </ul>
+                            <!-- E : 전체메뉴 리스트, 검색결과 있는경우 -->
+                        </div>
+                    </div>
+                    <!--E:menu-wrap-->
+                    <!-- E : 20200511 수정 | 전체메뉴 UI 수정 -->
+                </div>
+            </div>
+            <!--E:전체메뉴-->
+
+            <!--S:마이메뉴-->
+            <div class="aside-cont aside-mymenu js-aside-menu js-aside-menu-1">
+                <div class="aside-inner">
+                    <h3 class="offscreen">MY 몰리</h3> <!-- 20200429 수정 | 메뉴명 변경 -->
+                    <div class="guide-msg">
+                        김신한 과장님,
+                        <br><em>즐겨찾는 질문입니다.</em>
+                    </div>
+
+                    <!--S:menu-wrap-->
+                    <div class="menu-wrap">
+                        <!--desc 리스트에 최대8개 -->
+                        <!--!등록된메뉴없을때 추가해주새요 item 8개 노출하면 될듯-->
+                        <ul class="list hover" style="display: block;">
+                            <li class="item">
+                                <!-- 20200515 수정 : 재무제표 자동입력 확인용 추가 -->
+                                <a href="#" class="link"><i class="ico ico-mmenu49"></i><em class="lb">재무제표<br>자동입력</em></a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link"><i class="ico ico-mmenu02"></i><em class="lb">알림톡<br>안내발송</em></a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link"><i class="ico ico-mmenu03"></i><em class="lb">금융사기<br>본점접수</em></a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link"><i class="ico ico-mmenu04"></i><em class="lb">Find<br>서류확인</em></a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link"><i class="ico ico-mmenu05"></i><em class="lb">업무양식<br>외부발송</em></a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link"><i class="ico ico-mmenu10"></i><em class="lb">청약주택<br>현황조회</em></a>
+                            </li>
+                            <li class="item">
+                                <!--Desc 한줄일때 lb l1 클래스추가-->
+                                <a href="#" class="link"><i class="ico ico-mmenu12"></i><em class="lb l1">날씨조회</em></a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link add" onclick="asideOpen(3);"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--E:menu-wrap-->
+
+                    <!--S:인기질문-->
+                    <div class="fame-wrap">
+                        <div class="mtitle">나의 <em>인기 질문</em></div>
+                        <div class="list-wrap js-more-my-target">
+                            <ol>
+                                <li><em>01</em><a href="#" class="ellipsis" title="금융시장 정보조회 해줘">금융시장 정보조회 해줘</a><span class="num">999+</span></li>
+                                <li><em>02</em><span class="ellipsis" title="알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘">알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘</span><span class="num">999+</span></li>
+                                <li><em>03</em><a href="#" class="ellipsis">본부부서 담당자 조회해줘</a><span class="num">999+</span></li>
+                                <li><em>04</em><a href="#" class="ellipsis">오늘 날씨 알려줘</a><span class="num">999+</span></li>
+                                <li><em>05</em><a href="#" class="ellipsis">오늘 본점 점심메뉴 알려줘</a><span class="num">999+</span></li>
+                                <li class="hide"><em>06</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                <li class="hide"><em>07</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                <li class="hide"><em>08</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                <li class="hide"><em>09</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                                <li class="hide"><em>10</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a><span class="num">999+</span></li>
+                            </ol>
+                        </div>
+                        <a href="#" class="btn-fame-more-view" onclick="questionFold($(this),'.js-more-my-target');"><i class="ico ico-plus"></i><span class="lb">인기 질문 더보기</span></a>
+                    </div>
+                    <!--E:인기질문-->
+
+                    <!--S:인기질문-nodata-->
+                    <div class="fame-wrap">
+                        <div class="mtitle">나의 <em>인기 질문</em></div>
+                        <div class="nodata" style="display: block;">
+                            <i class="ico ico-nochat-dark"></i>
+                            <span class="txt">
+                            몰리에게 질문하신 내용이 없습니다.
+                            <br>AI.몰리와 대화를 시작해 보세요!
+                        </span>
+                        </div>
+                    </div>
+                    <!--E:인기질문-nodata-->
+                </div>
+            </div>
+            <!--E:마이메뉴-->
+            <!--S:최근질문-->
+            <div class="aside-cont aside-question js-aside-menu js-aside-menu-2">
+                <div class="aside-inner">
+                    <h3 class="offscreen">최근질문</h3>
+                    <div class="guide-msg">
+                        김신한 과장님,
+                        <br><em>최근 몰리에게 질문하신 내용이예요!</em>
+                    </div>
+
+                    <!--S:repeat question-wrap-->
+                    <div class="question-wrap">
+                        <div class="today-box">2019년 6월 24일 (수)</div>
+                        <div class="list-wrap">
+                            <ul class="list">
+                                <li><a href="#" class="link ellipsis">금융시장 정보조회 해줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><span class="link ellipsis">알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘</span>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">본부부서 담당자 조회해줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">오늘 날씨 알려줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">오늘 본점 점심메뉴 알려줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">서류 찾고싶은게 있어</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--E:repeat question-wrap-->
+
+                    <!--S:repeat question-wrap-->
+                    <div class="question-wrap">
+                        <div class="today-box">2019년 6월 23일 (화)</div>
+                        <div class="list-wrap">
+                            <ul class="list">
+                                <li><a href="#" class="link ellipsis">금융시장 정보조회 해줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><span class="link ellipsis">알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘</span>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">본부부서 담당자 조회해줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--E:repeat question-wrap-->
+
+                    <!--S:repeat question-wrap-->
+                    <div class="question-wrap">
+                        <div class="today-box">2019년 6월 22일 (월)</div>
+                        <div class="list-wrap">
+                            <ul class="list">
+                                <li><a href="#" class="link ellipsis">금융시장 정보조회 해줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><span class="link ellipsis">알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘</span>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">본부부서 담당자 조회해줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">오늘 날씨 알려줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">오늘 본점 점심메뉴 알려줘</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                                <li><a href="#" class="link ellipsis">서류 찾고싶은게 있어</a>
+                                    <a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--E:repeat question-wrap-->
+
+                    <!--S:최근질문-nodata-->
+                    <div class="question-wrap">
+                        <div class="nodata middle" style="display: block;">
+                            <div class="cell">
+                                <i class="ico ico-nochat-dark"></i>
+                                <span class="txt">
+                                몰리에게 질문하신 내용이 없습니다.
+                                <br>AI.몰리와 대화를 시작해 보세요!
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--E:최근질문-nodata-->
+                </div>
+            </div>
+            <!--E:최근질문-->
+            <!--S:메뉴편집-->
+            <div class="aside-cont aside-menu-edit js-aside-menu js-aside-menu-3">
+                <div class="aside-inner">
+                    <h3 class="mtitle">메뉴편집</h3>
+                    <div class="guide-msg">
+                        <em>나의 메뉴를 편집하여</em>
+                        <br>사용할 수 있습니다.
+                    </div>
+                    <!--S:menu-edit-wrap-->
+                    <div class="menu-edit-wrap">
+                        <div class="header">
+                            <div class="fl title"><em>01</em><span>메뉴를 움직여 순서를 변경해보세요.</span></div>
+                            <div class="fr"><span class="txt">(최대 8개)</span></div>
+                        </div>
+
+                        <!--S:menu-wrap-->
+                        <div class="menu-wrap">
+
+                            <ul class="list mymenu-thum js-mymenu-thum">
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                                <li class="item"><div class="link add"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></div></li>
+                            </ul>
+
+                            <!--S:선택된나의메뉴-->
+                            <ul class="list mymenu-selected js-mymenu-selected"></ul>
+                            <!--E:선택된나의메뉴-->
+
+                        </div>
+                        <!--E:menu-wrap-->
+
+                        <div class="header">
+                            <div class="fl title"><em>02</em><span>새로운 메뉴를 추가해보세요.</span></div>
+                        </div>
+
+                        <!--S:menu-wrap-->
+                        <div class="menu-wrap">
+                            <!--S:기본메뉴목록-->
+                            <ul class="list menu-bank-list js-menu-bank">
+                                <!-- S : 20200515 추가 | 재무제표 자동입력 확인용 추가 -->
+                                <li class="item" data-idx="item-49">
+                                    <div class="link"><i class="ico ico-mmenu49"></i><em class="lb">재무제표<br>자동입력</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <!-- E : 20200515 추가 | 재무제표 자동입력 확인용 추가 -->
+                                <li class="item" data-idx="item-1">
+                                    <div class="link"><i class="ico ico-mmenu01"></i><em class="lb">금융시장<br>정보조회</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-2">
+                                    <div class="link"><i class="ico ico-mmenu02"></i><em class="lb">알림톡<br>안내발송</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-3">
+                                    <div class="link"><i class="ico ico-mmenu03"></i><em class="lb">금융사기<br>본점접수</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-4">
+                                    <div class="link"><i class="ico ico-mmenu04"></i><em class="lb">Find<br>서류확인</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-5">
+                                    <div class="link"><i class="ico ico-mmenu05"></i><em class="lb">업무양식<br>외부발송</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-6">
+                                    <div class="link"><i class="ico ico-mmenu06"></i><em class="lb">본부부서<br>담당조회</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-7">
+                                    <div class="link"><i class="ico ico-mmenu07"></i><em class="lb">금융거래<br>목적확인</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-8">
+                                    <div class="link"><i class="ico ico-mmenu08"></i><em class="lb">전세대출<br>상품추천</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-9">
+                                    <div class="link"><i class="ico ico-mmenu09"></i><em class="lb">e-HR<br>정보조회</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-10">
+                                    <div class="link"><i class="ico ico-mmenu10"></i><em class="lb">청약주택<br>현황조회</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-11">
+                                    <div class="link"><i class="ico ico-mmenu11"></i><em class="lb">청약<br>주택조회</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <li class="item" data-idx="item-12">
+                                    <!--Desc 한줄일때 lb l1 클래스추가-->
+                                    <div class="link"><i class="ico ico-mmenu12"></i><em class="lb l1">날씨조회</em></div>
+                                    <div class="btns js-btns">
+                                        <a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a>
+                                        <a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a>
+                                        <a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+
+                                <!--S: 20190829 add-->
+                                <li class="item" data-idx="item-13"><div class="link"><i class="ico ico-mmenu13"></i><em class="lb">부서카드<br>사용내역</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-14"><div class="link"><i class="ico ico-mmenu14"></i><em class="lb">예금상품<br>간편조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-15"><div class="link"><i class="ico ico-mmenu15"></i><em class="lb">펀드수익률<br>간편조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-16"><div class="link"><i class="ico ico-mmenu16"></i><em class="lb">양수도<br>계좌이동</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-17"><div class="link"><i class="ico ico-mmenu17"></i><em class="lb">신용대출<br>상품조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-18"><div class="link"><i class="ico ico-mmenu18"></i><em class="lb">주택담보<br>대출접수</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-19"><div class="link"><i class="ico ico-mmenu19"></i><em class="lb">개인사업자<br>신용평가</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-20"><div class="link"><i class="ico ico-mmenu20"></i><em class="lb">담보대출<br>한도간편산출</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-21"><div class="link"><i class="ico ico-mmenu21"></i><em class="lb">채무인수<br>간편안내</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-22"><div class="link"><i class="ico ico-mmenu22"></i><em class="lb">법인월보<br>간편조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-23"><div class="link"><i class="ico ico-mmenu23"></i><em class="lb">통화별<br>환율내역</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-24"><div class="link"><i class="ico ico-mmenu24"></i><em class="lb">외환타발<br>송금내도내역</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-25"><div class="link"><i class="ico ico-mmenu25"></i><em class="lb">외환송금<br>사유코드</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-26"><div class="link"><i class="ico ico-mmenu26"></i><em class="lb">신용장매입<br>심사안내</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-27"><div class="link"><i class="ico ico-mmenu27"></i><em class="lb">신규서류<br>간편안내</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-28"><div class="link"><i class="ico ico-mmenu28"></i><em class="lb">공카드<br>재고조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-29"><div class="link"><i class="ico ico-mmenu29"></i><em class="lb">지점월별<br>손익조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-30"><div class="link"><i class="ico ico-mmenu30"></i><em class="lb">경비예산<br>현황조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-31"><div class="link"><i class="ico ico-mmenu31"></i><em class="lb">고객정보<br>보호관리</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <li class="item" data-idx="item-32"><div class="link"><i class="ico ico-mmenu32"></i><em class="lb">자점검사처리<br>대상조회</em></div><div class="btns js-btns"><a href="#" class="btn-mini-fn delete" onclick="deleteToMymenu($(this));"><i class="ico ico-10-x"></i><span class="offscreen">삭제</span></a><a href="#" class="btn-mini-fn add" onclick="addToMymenu($(this));"><i class="ico ico-10-plus"></i><span class="offscreen">추가</span></a><a href="#" class="btn-mini-fn selected" onclick="deleteToMymenu($(this));"><i class="ico ico-10-check"></i><span class="offscreen">삭제</span></a></div></li>
+                                <!--E: 20190829 add-->
+                            </ul>
+                            <!--E:기본메뉴목록-->
+                        </div>
+                        <!--E:menu-wrap-->
+
+                        <div class="btn-list-group">
+                            <a href="#" class="btn-pos h42">저장</a>
+                        </div>
+
+
+                    </div>
+                    <!--E:menu-edit-wrap-->
+
+                </div>
+            </div>
+            <!--E:메뉴편집-->
+
+            <!--S:서류관리-->
+            <div class="aside-cont aside-doc-manager js-aside-menu js-aside-menu-4">
+                <div class="aside-inner">
+                    <h3 class="mtitle">서류관리</h3>
+                    <div class="guide-msg">
+                        <em>자주쓰는 서류 목록을</em>
+                        <br>관리할 수 있습니다.
+                    </div>
+
+                    <!--S:그룹추가버튼-->
+                    <div class="btn-list-group">
+                        <a href="#" class="btn-pos h42">
+                            <i class="ico bico-plus"></i>
+                            <span>그룹 추가</span>
+                        </a>
+                    </div>
+                    <!--E:그룹추가버튼-->
+
+                    <!--S:문서그룹-->
+                    <div class="doc-group">
+                        <!--S:문서그룹리스트-->
+                        <div class="doc-group-list">
+                            <!--S:repeat group-->
+                            <!--Desc:
+								상단에 btn-doc-more js-btn-doc-n 버튼명과 메뉴명 맞춰야함
+								- data-href="js-doc-menu-1"
+								- data-link="js-btn-doc-1"
+								서류관리 메뉴같은경우 5개까지 가능
+								메뉴 5개 생성필요
+							-->
+                            <div class="group js-doc-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">자주쓰는서류 1</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-doc-1" data-href="js-doc-menu-1"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <ul class="doc-list">
+                                        <!--Desc:
+										- 말줄임 ellipsis class 추가
+										-->
+                                        <li><a href="#" class="ellipsis">사업자등록증사업 자등록증사업자등록증사 업자등록증 사업자등록증</a></li>
+                                        <li><em class="ellipsis" >부가세과세표준증명원(2019년)</em></li>
+                                        <li><em class="ellipsis" >국세완납증명원(2018년)</em></li>
+                                        <li><em class="ellipsis" >지방세완납증명원(2019년)</em></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold" onclick="docManagerGroupToggle($(this), '.js-doc-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <!--S:docmoremenu-->
+                                <div class="js-doc-menu-1 doc-manager more-menu js-more-menu" data-link="js-btn-doc-1">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹명변경</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">서류관리</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+                            <!--S:repeat group-->
+                            <div class="group js-doc-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">자주쓰는서류 2</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-doc-2" data-href="js-doc-menu-2"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <ul class="doc-list">
+                                        <li><em class="ellipsis">사업자등록증사업 자등록증사업자등록증사 업자등록증 사업자등록증</em></li>
+                                        <li><em>부가세과세표준증명원(2019년)</em></li>
+                                        <li><em>국세완납증명원(2018년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold" onclick="docManagerGroupToggle($(this), '.js-doc-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <div class="js-doc-menu-2 doc-manager more-menu js-more-menu" data-link="js-btn-doc-2">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹명변경</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">서류관리</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+                            <!--S:repeat group-->
+                            <div class="group js-doc-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">자주쓰는서류 3</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-doc-3" data-href="js-doc-menu-3"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <ul class="doc-list">
+                                        <li><em class="ellipsis">사업자등록증사업 자등록증사업자등록증사 업자등록증 사업자등록증</em></li>
+                                        <li><em>부가세과세표준증명원(2019년)</em></li>
+                                        <li><em>국세완납증명원(2018년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold" onclick="docManagerGroupToggle($(this), '.js-doc-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <!--S:docmoremenu-->
+                                <div class="js-doc-menu-3 doc-manager more-menu js-more-menu" data-link="js-btn-doc-3">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹명변경</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">서류관리</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+                            <!--S:repeat group-->
+                            <div class="group js-doc-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">자주쓰는서류 4</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-doc-4" data-href="js-doc-menu-4"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <ul class="doc-list">
+                                        <li><em class="ellipsis">사업자등록증사업 자등록증사업자등록증사 업자등록증 사업자등록증</em></li>
+                                        <li><em>부가세과세표준증명원(2019년)</em></li>
+                                        <li><em>국세완납증명원(2018년)</em></li>
+                                        <li><em>지방세완납증명원(2019년)</em></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold" onclick="docManagerGroupToggle($(this), '.js-doc-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <!--S:docmoremenu-->
+                                <div class="js-doc-menu-4 doc-manager more-menu js-more-menu" data-link="js-btn-doc-4">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹명변경</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">서류관리</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+                            <!--S:repeat group 그룹생성시-->
+                            <div class="group js-doc-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">자주쓰는서류 5</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-doc-5" data-href="js-doc-menu-5"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont" style="display: block;">
+                                    <ul class="doc-list">
+                                        <li><a href="#" class="ellipsis">서류를 추가해주세요!</a></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold is-active" onclick="docManagerGroupToggle($(this), '.js-doc-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <!--S:docmoremenu-->
+                                <div class="js-doc-menu-5 doc-manager more-menu js-more-menu" data-link="js-btn-doc-5">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹명변경</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">서류관리</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+
+                            <!--S:repeat group 그룹없을때-->
+                            <div class="group js-doc-group">
+                                <div class="nodata" style="display: block;">
+                                    <i class="ico ico-nodata-alert"></i>
+                                    <span class="txt">
+                                    그룹을 추가해주세요!
+                                </span>
+                                </div>
+                            </div>
+                            <!--E:repeat group-->
+
+                        </div>
+                        <!--E:문서그룹리스트-->
+                    </div>
+                    <!--E:문서그룹-->
+
+                </div>
+            </div>
+            <!--E:서류관리-->
+
+            <!--S : 20200511 추가-->
+            <!--S: 메일그룹 관리 -->
+            <div class="aside-cont aside-mail-manager js-aside-menu js-aside-menu-7">
+                <div class="aside-inner">
+                    <h3 class="mtitle">메일그룹 관리</h3>
+                    <div class="guide-msg">
+                        <em>자주쓰는 메일 주소를</em>
+                        <br>관리할 수 있습니다.
+                    </div>
+
+                    <!--S:그룹추가버튼-->
+                    <div class="btn-list-group">
+                        <a href="#" class="btn-pos h42" onclick="javascript:$('.pop-mail-group-manager').dialog('open');">
+                            <i class="ico bico-plus"></i>
+                            <span>그룹 추가</span>
+                        </a>
+                    </div>
+                    <!--E:그룹추가버튼-->
+
+                    <!--S:메일그룹-->
+                    <div class="doc-group">
+                        <!--S:메일그룹리스트-->
+                        <div class="doc-group-list">
+                            <!--S:repeat group-->
+                            <!--Desc:
+								상단에 btn-mail-more js-btn-mail-n 버튼명과 메뉴명 맞춰야함
+								- data-href="js-mail-menu-1"
+								- data-link="js-btn-mail-1"
+							-->
+                            <div class="group js-mail-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">여신 기획부 (3)</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-mail-1" data-href="js-mail-menu-1"><i class="ico ico-more18"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <ul class="doc-list">
+                                        <!--Desc:
+										- 말줄임 ellipsis class 추가
+										-->
+                                        <li><a href="#" class="ellipsis">김길동 (kim12345@mailaddress.co.kr)</a></li>
+                                        <li><em class="ellipsis" >이신한 (kim12345@mailaddress.co.kr)</em></li>
+                                        <li><em class="ellipsis" >홍길동 (kim12345@mailaddress.co.kr)</em></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold" onclick="docManagerGroupToggle($(this), '.js-mail-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <!--S:docmoremenu-->
+                                <div class="js-mail-menu-1 doc-manager more-menu js-more-menu" data-link="js-btn-mail-1">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript:$('.pop-mail-group-manager').dialog('open');"><em class="lb">그룹편집</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+                            <!--S:repeat group -->
+                            <div class="group js-mail-group">
+                                <div class="header">
+                                    <div class="fl title ellipsis">국내 영업부 (6)</div>
+                                    <div class="fr">
+                                        <a href="#" class="btn-doc-more js-link-more-menu js-btn-mail-2" data-href="js-mail-menu-2"><i class="ico ico-more18"></i><span class="offscreen">열기</span></a>
+                                    </div>
+                                </div>
+                                <div class="cont">
+                                    <ul class="doc-list">
+                                        <!--Desc:
+										- 말줄임 ellipsis class 추가
+										-->
+                                        <li><a href="#" class="ellipsis">김길동 (kim12345@mailaddress.co.kr)</a></li>
+                                        <li><em class="ellipsis" >이신한 (kim12345@mailaddress.co.kr)</em></li>
+                                        <li><em class="ellipsis" >홍길동 (kim12345@mailaddress.co.kr)</em></li>
+                                        <li><a href="#" class="ellipsis">김길동 (kim12345@mailaddress.co.kr)</a></li>
+                                        <li><em class="ellipsis" >이신한 (kim12345@mailaddress.co.kr)</em></li>
+                                        <li><em class="ellipsis" >홍길동 (kim12345@mailaddress.co.kr)</em></li>
+                                    </ul>
+                                </div>
+                                <a href="#" class="btn-doc-fold js-link-doc-fold" onclick="docManagerGroupToggle($(this), '.js-mail-group');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+
+                                <!--S:docmoremenu-->
+                                <div class="js-mail-menu-2 doc-manager more-menu js-more-menu" data-link="js-btn-mail-2">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript:$('.pop-mail-group-manager').dialog('open');"><em class="lb">그룹편집</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"><em class="lb">그룹삭제</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:docmoremenu-->
+                            </div>
+                            <!--E:repeat group-->
+
+                            <!--S:repeat group 그룹없을때-->
+                            <div class="group js-mail-group">
+                                <div class="nodata" style="display: block;">
+                                    <i class="ico ico-nodata-alert"></i>
+                                    <span class="txt">메일 그룹이 없습니다.</span>
+                                </div>
+                            </div>
+                            <!--E:repeat group-->
+
+                        </div>
+                        <!--E:문서그룹리스트-->
+                    </div>
+                    <!--E:메일그룹-->
+
+                </div>
+            </div>
+            <!--E: 메일그룹 관리 -->
+            <!--S : 20200511 추가-->
+
+            <!--S : 20200519 추가 -->
+            <!--S:나의스크랩-->
+            <div class="aside-cont aside-scrap-list js-aside-menu js-aside-menu-8">
+                <div class="aside-inner">
+                    <h3 class="mtitle">나의 스크랩</h3>
+                    <div class="guide-msg">
+                        <em>홍길동 차장님의</em> <br />
+                        스크랩한 <span class="fc-spot">999</span>개의 지식들이에요.
+                    </div>
+
+                    <div class="scrap-list-wrap js-scrap-list-wrap">
+                        <div class="mmenu-search-box">
+                            <input type="text" class="js-scrap-search-keyword" placeholder="제목을 입력하세요.">
+                            <a href="#" class="btn-pos" onclick=" javascript: testScrapSearch('.js-scrap-list-wrap');">검색</a>
+                            <a href="#" onclick="testScrapSearchReset('.js-scrap-list-wrap');" class="ibtn-delete js-btn-search-reset" style=""><i class="ico ico-16-x js-tooltip" title="검색초기화"></i></a>
+                        </div>
+
+                        <!-- S : 스크랩 없는 경우, 검색 결과 없는 경우 -->
+                        <div class="nodata">
+                            <i class="ico ico-nodata-alert"></i>
+                            <span class="txt">스크랩한 지식이 없습니다.</span>
+                        </div>
+                        <!-- E : 스크랩 없는 경우, 검색 결과 없는 경우 -->
+
+                        <!-- S : 검색 결과 있는 경우, 스크랩 리스트 -->
+                        <ul class="scrap-list js-scrap-list">
+                            <!--Desc:
+								상단에 btn-scrap-more js-btn-scrap-n 버튼명과 메뉴명 맞춰야함
+								- data-href="js-scrap-menu-1"
+								- data-link="js-btn-scrap-1"
+							-->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">999</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">코로나 예방수칙 안내</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-1" data-href="js-scrap-menu-1"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-1 more-menu js-more-menu" data-link="js-btn-scrap-1">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.CHAT_220. PC서비스안내 팝업 html 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">998</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">예방수칙 안내 코로나 예방수칙 안내 코로나 예방수칙 안내</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-2" data-href="js-scrap-menu-2"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-2 more-menu js-more-menu" data-link="js-btn-scrap-2">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">997</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">스크랩 코로나 예방수칙</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-3" data-href="js-scrap-menu-3"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-3 more-menu js-more-menu" data-link="js-btn-scrap-3">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">996</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">코로나 예방수칙</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-4" data-href="js-scrap-menu-4"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-4 more-menu js-more-menu" data-link="js-btn-scrap-4">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">995</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">코로나 예방수칙 안내</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-5" data-href="js-scrap-menu-5"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-5 more-menu js-more-menu" data-link="js-btn-scrap-5">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">994</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">예방수칙 안내 코로나 예방수칙 안내 코로나 예방수칙 안내</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-6" data-href="js-scrap-menu-6"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-6 more-menu js-more-menu" data-link="js-btn-scrap-6">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">993</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">스크랩 코로나 예방수칙</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-7" data-href="js-scrap-menu-7"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-7 more-menu js-more-menu" data-link="js-btn-scrap-7">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                            <!-- s : repeat -->
+                            <li class="list-item">
+                                <span class="num">992</span>
+                                <a href="#" class="ellipsis lb" onclick="asideOpen(10)">코로나 예방수칙</a>
+                                <a href="#" class="btn-scrap-more js-link-more-menu js-btn-scrap-8" data-href="js-scrap-menu-8"><i class="ico ico-more18 js-tooltip" title="메뉴더보기"></i><span class="offscreen">열기</span></a>
+                                <!--S:scrapmoremenu-->
+                                <div class="js-scrap-menu-8 more-menu js-more-menu" data-link="js-btn-scrap-8">
+                                    <ul class="more-menu-list">
+                                        <li class="item">
+                                            <a href="#" class="link" onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT200.쪽지보내기 팝업 참고해주세요')"><em class="lb">쪽지보내기</em></a>
+                                        </li>
+                                        <li class="item">
+                                            <a href="#" class="link"  onclick="javascript:alert('html/mo/04_popup__01_default.html CHAT_220. PC서비스안내 팝업 참고해주세요')"><em class="lb">스크랩편집</em></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--E:scrapmoremenu-->
+                            </li>
+                            <!-- e : repeat -->
+                        </ul>
+                        <!-- E : 검색 결과 있는 경우, 스크랩 리스트 -->
+                    </div>
+                </div>
+            </div>
+            <!--E:나의스크랩-->
+            <!--S:스크랩 확인-->
+            <div class="aside-cont aside-scrap-viewer js-aside-menu js-aside-menu-9">
+                <div class="aside-inner">
+                    <h3 class="offscreen">스크랩 확인</h3>
+                    <a href="#" class="btn-back-list" onclick="asideOpen(8)"><i class="ico ico-back-list"></i><span class="lb">목록</span></a>
+                    <div class="guide-msg">
+                        코로나 예방 수칙 안내
+                    </div>
+
+                    <div class="scrap-detail-wrap">
+                        <!--S : 몰리의 답변-->
+                        <div class="scrap-viewer-box">
+                            <div class="header">몰리의 답변</div>
+                            <div class="cont">
+                                <p>[코로나 19 예방수칙] </p>
+                                <p>코로나 예방 수칙을 참고하셔서<br />
+                                    모두가 함께 예방하도록 해요.</p>
+
+                                <a href="#">http://ncov.mohw.go.kr/baroView4.do?brdId= 4&brdGubun=44</a>
+
+                                <p>1. 흐르는 물에 비누로 꼼꼼하게 손 씻기<br />
+                                    2. 기침이나 재채기할 때 옷소매로 입과 코 가리기<br />
+                                    3. 씻지 않은 손으로 눈, 코, 입 만지지 않기<br />
+                                    4. 발열, 호흡기 증상자와의 접촉 피하기<br />
+                                    5. 의료기관 방문 시 마스크 착용하기</p>
+                            </div>
+                        </div>
+                        <!--E : 몰리의 답변-->
+                        <div class="btn-list-group">
+                            <a href="#" class="btn-pos h42"  onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT220.PC 서비스 안내 팝업 참고해주세요')"><i class="ico ico-edit"></i><span class="lb">스크랩 편집</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--E:스크랩 확인-->
+            <!--S:스크랩 상세-->
+            <div class="aside-cont aside-scrap-detail js-aside-menu js-aside-menu-10">
+                <div class="aside-inner">
+                    <h3 class="offscreen">스크랩 상세</h3>
+                    <a href="#" class="btn-back-list" onclick="asideOpen(8)"><i class="ico ico-back-list"></i><span class="lb">목록</span></a>
+                    <div class="guide-msg">코로나 예방 수칙 안내</div>
+
+                    <div class="scrap-detail-wrap">
+                        <!--S : 몰리의 답변-->
+                        <div class="scrap-viewer-box js-scrap-box">
+                            <div class="header">몰리의 답변</div>
+                            <div class="cont">
+                                <p>[코로나 19 예방수칙] </p>
+                                <p>코로나 예방 수칙을 참고하셔서<br />
+                                    모두가 함께 예방하도록 해요.</p>
+
+                                <a href="#">http://ncov.mohw.go.kr/baroView4.do?brdId= 4&brdGubun=44</a>
+
+                                <p>1. 흐르는 물에 비누로 꼼꼼하게 손 씻기<br />
+                                    2. 기침이나 재채기할 때 옷소매로 입과 코 가리기<br />
+                                    3. 씻지 않은 손으로 눈, 코, 입 만지지 않기<br />
+                                    4. 발열, 호흡기 증상자와의 접촉 피하기<br />
+                                    5. 의료기관 방문 시 마스크 착용하기</p>
+                            </div>
+                            <a href="#" class="btn-scrap-fold" onclick="docManagerGroupToggle($(this), '.js-scrap-box');"><i class="ico ico-plus18"></i><span class="offscreen">열기</span></a>
+                        </div>
+                        <!--E : 몰리의 답변-->
+
+                        <!--S : 나의 편집-->
+                        <div class="scrap-edit-box">
+                            <div class="mtitle">나의 편집</div>
+
+                            <div class="edit-cont-box js-scrap-edit-box">
+                                <!-- s : repeat -->
+                                <div class="edit-cont">
+                                    <!-- DESC : 강조처리 체크시 highlight class 추가해주세요 -->
+                                    <span class="highlight">[COVID -19 예방수칙]</span>
+                                </div>
+                                <!-- e : repeat -->
+                                <!-- s : repeat -->
+                                <div class="edit-cont">
+                                    코로나 예방 수칙을 참고하셔서 <br />
+                                    모두가 함께 예방하도록 해요.
+                                </div>
+                                <!-- e : repeat -->
+                                <!-- s : repeat -->
+                                <div class="edit-cont">
+                                    1. 흐르는 물에 비누로 꼼꼼하게 손 씻기<br />
+                                    2. 기침이나 재채기할 때 옷소매로 입과 코 가리기<br />
+                                    3. 씻지 않은 손으로 눈, 코, 입 만지지 않기<br />
+                                </div>
+                                <!-- e : repeat -->
+                            </div>
+                        </div>
+                        <!--E : 나의 편집-->
+
+                        <div class="btn-list-group">
+                            <a href="#" class="btn-pos h42"  onclick="javascript: alert('html/mo/04_popup__01_default.html CHAT220.PC 서비스 안내 팝업 참고해주세요')"><i class="ico ico-edit"></i><span class="lb">스크랩 편집</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--E:스크랩 상세-->
+            <!--E : 20200519 추가 -->
+
+            <!--설정버튼-->
+            <!--S:나의 스크랩, logout 20200429 추가, 튜토리얼 버튼 삭제 -->
+            <a href="#" class="btn-logout">
+                <i class="ico ico-logout"></i><span class="offscreen">로그아웃</span>
+            </a>
+
+            <a href="#" class="btn-scrap" onclick="javascript: asideOpen(8);"> <!-- 20200519 수정 : onclick 추가 -->
+                <i class="ico ico-scrap"></i><span class="offscreen">나의 스크랩</span>
+            </a>
+            <!--E:나의 스크랩, logout 20200429 추가, 튜토리얼 버튼 삭제 -->
+
+            <a href="#" class="btn-setting js-btn-setting js-link-more-menu" data-href="js-setting-menu">
+                <i class="ico ico-setting"></i><span class="offscreen">설정</span>
+            </a>
+
+            <!--S:설정 더보기메뉴-->
+            <div class="js-setting-menu setting more-menu js-more-menu" data-link="js-btn-setting">
+                <ul class="more-menu-list">
+                    <li class="item">
+                        <a href="#" class="link" data-href="js-aside-menu" onclick="asideOpen(3);">
+                            <i class="ico ico-util01"></i>
+                            <em class="lb">메뉴편집</em>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" data-href="js-aside-menu" onclick="asideOpen(4);">
+                            <i class="ico ico-util02"></i>
+                            <em class="lb">서류관리</em>
+                        </a>
+                    </li>
+                    <!-- 200429 삭제 | 로그아웃 버튼 햄버거 메뉴로 위치 이동되어 삭제 -->
+                    <!-- S : 20200511 추가 | 메일그룹관리 추가 -->
+                    <li class="item">
+                        <a href="#" class="link" data-href="js-aside-menu" onclick="asideOpen(7);">
+                            <i class="ico ico-util06"></i>
+                            <em class="lb">메일그룹관리</em>
+                        </a>
+                    </li>
+                    <!-- E : 20200511 추가 | 메일그룹관리 추가 -->
+                </ul>
+            </div>
+            <!--E:설정 더보기메뉴-->
+
+            <a href="#" class="btn-aside-close js-aside-close" onclick="asideClose();"><span class="offscreen">메뉴닫기</span></a>
+        </div>
+        <!--E:aside-->
+
+        <!--S:overlay-->
+        <div class="overlay-nav"></div>
+        <div class="overlay-aside" onclick="asideClose();"></div>
+        <div class="overlay-dialog"></div>
+        <!--E:overlay-->
+
+        <!--S:chat-->
+        <div class="chat js-chat">
+            <!-- S:채팅컨텐츠 -->
+
+            <!--S:이전대화보기-->
+            <div class="c-msg">
+                <a href="#" class="btn-history-msg-view" onclick="alert('이전대화 보기')">
+                    <i class="ico ico-prev-arrow"></i><span class="lb">이전대화 보기</span>
+                </a>
+            </div>
+            <!--E:이전대화보기-->
+
+            <!--S:date-->
+            <div class="c-msg today">
+                <span class="today-box">2019년 6월 24일 (수)</span>
+            </div>
+            <!--E:date-->
+
+
+            <!--S:repeat c-msg welcome -->
+            <div class="c-msg ai welcome">
+                <div class="inner">
+                    <p class="msg-first">
+                        오늘은 몰리가 <em>어떤 업무</em>를
+                        <br>도와드릴까요?
+                    </p>
+                    <!--S:Tab-->
+                    <div class="tab-wrap tab-welcome js-tab-welcome-wrap">
+                        <div class="tab-nav js-tab-nav">
+                            <ul class="tab-list">
+                                <li class="tab-item is-active"><button class="tab-link tab-link-1" onclick="tabsOnOff($(this), $(this).parents('.js-tab-welcome-wrap'), $(this).parents('.js-tab-nav')); return false;" data-content="js-tab-cont1">나의 메뉴</button></li>
+                                <li class="tab-item"><button class="tab-link tab-link-2" onclick="tabsOnOff($(this), $(this).parents('.js-tab-welcome-wrap'), $(this).parents('.js-tab-nav')); return false;" data-content="js-tab-cont2">나의 최근질문</button></li>
+                                <li class="tab-item"><button class="tab-link tab-link-3" onclick="tabsOnOff($(this), $(this).parents('.js-tab-welcome-wrap'), $(this).parents('.js-tab-nav')); return false;" data-content="js-tab-cont3">대표 메뉴</button></li>
+                                <li class="tab-item"><button class="tab-link tab-link-4" onclick="tabsOnOff($(this), $(this).parents('.js-tab-welcome-wrap'), $(this).parents('.js-tab-nav')); return false;" data-content="js-tab-cont4">*nodata</button></li>
+                            </ul>
+                        </div>
+
+                        <!--S:tab-content || 나의메뉴 -->
+                        <div class="tab-welcome-menu tab-content js-tab-cont1">
+                            <h3 class="offscreen">나의메뉴</h3>
+                            <!--S:menu-wrap-->
+                            <div class="menu-wrap">
+                                <!--desc 리스트에 최대8개 -->
+                                <ul class="list hover">
+                                    <li class="item">
+                                        <!-- 20200515 수정 : 재무제표 자동입력 확인용 추가 -->
+                                        <a href="#" class="link"><i class="ico ico-mmenu49"></i><em class="lb">재무제표<br>자동입력</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu03"></i><em class="lb">금융사기<br>본점접수</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu02"></i><em class="lb">알림톡<br>안내발송</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu05"></i><em class="lb">업무양식<br>외부발송</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu04"></i><em class="lb">Find<br>서류확인</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu10"></i><em class="lb">청약주택<br>현황조회</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <!--Desc 한줄일때 lb l1 클래스추가-->
+                                        <a href="#" class="link"><i class="ico ico-mmenu12"></i><em class="lb l1">날씨조회</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link add" onclick="asideOpen(3);"><i class="ico ico-plus30"></i><em class="lb">메뉴를<br>추가하세요</em></a>
+                                    </li>
+                                </ul>
+                                <!--S:nodata-->
+                                <div class="nodata" style="display: none;">
+                                    <a href="#" onclick="asideOpen(3);">
+                                        <i class="ico ico-nomenu"></i>
+                                        <span class="txt">
+                                        설정된 메뉴가 없습니다.
+                                        <br>자주 쓰는 메뉴를 설정해보세요!
+                                    </span>
+                                        <span class="txt-path">※ 설정 > [메뉴설정]</span>
+                                    </a>
+                                </div>
+                                <!--E:nodata-->
+
+                            </div>
+                            <!--E:menu-wrap-->
+                        </div>
+                        <!--E:tab-content || 나의메뉴 -->
+
+                        <!--S:tab-content || 나의메뉴 nodata-->
+                        <div class="tab-welcome-menu tab-content js-tab-cont4" style="display: none;">
+                            <h3 class="offscreen">나의메뉴</h3>
+                            <!--S:menu-wrap-->
+                            <div class="menu-wrap">
+                                <!--S:nodata-->
+                                <div class="nodata" style="display: block;">
+                                    <a href="#" onclick="asideOpen(3);">
+                                        <i class="ico ico-nomenu"></i>
+                                        <span class="txt">
+                                        설정된 메뉴가 없습니다.
+                                        <br>자주 쓰는 메뉴를 설정해보세요!
+                                    </span>
+                                        <span class="txt-path">※ 설정 > [메뉴설정]</span>
+                                    </a>
+                                </div>
+                                <!--E:nodata-->
+
+                            </div>
+                            <!--E:menu-wrap-->
+                        </div>
+                        <!--E:tab-content || 나의메뉴 nodata-->
+                        <!--S:tab-content || 나의최근질문 nodata-->
+                        <div class="tab-welcome-question tab-content js-tab-cont4" style="display: none;">
+                            <h3 class="offscreen">나의메뉴</h3>
+                            <!--S:question-wrap-->
+                            <div class="question-wrap">
+                                <!--S:nodata-->
+                                <div class="nodata" style="display: block;">
+                                    <i class="ico ico-nochat"></i>
+                                    <span class="txt">
+                                    몰리에게 질문하신 내용이 없습니다.
+                                    <br>AI.몰리와 대화를 시작해 보세요!
+                                </span>
+                                </div>
+                                <!--E:nodata-->
+
+                            </div>
+                            <!--E:question-wrap-->
+                        </div>
+                        <!--E:tab-content || 나의최근질문 nodata -->
+                        <!--S:tab-content || 나의최근질문 -->
+                        <div class="tab-welcome-question tab-content js-tab-cont2" style="display: none;">
+                            <h3 class="offscreen">나의최근질문</h3>
+
+                            <!--S:repeat question-wrap-->
+                            <div class="question-wrap">
+                                <div class="list-wrap">
+                                    <ul class="list">
+                                        <li><a href="#" class="link ellipsis" title="금융시장 정보조회 해줘">금융시장 정보조회 해줘</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                        <li><a href="#" class="link ellipsis">알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘알림톡 안내발송해줘</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                        <li><a href="#" class="link ellipsis">본부부서 담당자 조회해줘</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                        <li><a href="#" class="link ellipsis">오늘 날씨 알려줘</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                        <li><a href="#" class="link ellipsis">오늘 본점 점심메뉴 알려줘</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                        <li><a href="#" class="link ellipsis">서류 찾고싶은게 있어</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                        <li><a href="#" class="link ellipsis">본부부서 담당자 조회해줘</a>
+                                            <a href="#" class="btn-util-fn-pos"><i class="ico ico-alarm-pos"></i><span class="lb">신고</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!--S:nodata-->
+                                <div class="nodata" style="display: none;">
+                                    <i class="ico ico-nochat"></i>
+                                    <span class="txt">
+                                    몰리에게 질문하신 내용이 없습니다.
+                                    <br>AI.몰리와 대화를 시작해 보세요!
+                                </span>
+                                </div>
+                                <!--E:nodata-->
+                            </div>
+                            <!--E:repeat question-wrap-->
+                        </div>
+                        <!--E:tab-content || 나의최근질문 -->
+                        <!--S:tab-content || 대표메뉴 -->
+                        <div class="tab-welcome-menu tab-content js-tab-cont3" style="display: none;">
+                            <h3 class="offscreen">대표메뉴</h3>
+                            <!--S:menu-wrap-->
+                            <div class="menu-wrap">
+                                <!--desc 리스트에 최대8개 -->
+                                <ul class="list hover">
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu01"></i><em class="lb">금융시장<br>정보조회</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu02"></i><em class="lb">알림톡<br>안내발송</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu03"></i><em class="lb">금융사기<br>본점접수</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu04"></i><em class="lb">Find<br>서류확인</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu05"></i><em class="lb">업무양식<br>외부발송</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu08"></i><em class="lb">전세대출<br>상품추천</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <a href="#" class="link"><i class="ico ico-mmenu10"></i><em class="lb">청약주택<br>현황조회</em></a>
+                                    </li>
+                                    <li class="item">
+                                        <!--Desc 한줄일때 lb l1 클래스추가-->
+                                        <a href="#" class="link"><i class="ico ico-mmenu12"></i><em class="lb l1">날씨조회</em></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--E:menu-wrap-->
+                        </div>
+                        <!--E:tab-content || 대표메뉴 -->
+                    </div>
+                    <!--E:Tab-->
+                    <!--S:인기질문-->
+                    <div class="fame-wrap">
+                        <div class="mtitle">신한인 <em>인기 질문</em></div>
+                        <div class="list-wrap">
+                            <ol>
+                                <li><em>01</em><a href="#" class="ellipsis">금융시장 정보조회 해줘</a></li>
+                                <li><em>02</em><span class="ellipsis">알림톡 안내발송해줘알림톡 안내발송해줘</span></li>
+                                <li><em>03</em><a href="#" class="ellipsis">본부부서 담당자 조회해줘</a></li>
+                            </ol>
+                            <ol>
+                                <li><em>04</em><a href="#" class="ellipsis">오늘 날씨 알려줘</a></li>
+                                <li><em>05</em><a href="#" class="ellipsis">오늘 본점 점심메뉴 알려줘</a></li>
+                                <li><em>06</em><a href="#" class="ellipsis">서류 찾고싶은게 있어</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--E:인기질문-->
+                </div>
+            </div>
+            <!--E:repeat c-msg -->
+
+            <!--S:텍스트형-->
+            <!--S:repeat c-msg ai -->
+            <div class="c-msg ai">
+                <div class="inner">
+                    <p class="ballon">
+                        채팅창 안에 들어가는 컨텐츠는
+                        <a href="01_guide__04_chat.html">채팅 가이드(html/pc/01_guide__04_chat.html) 참고해주세요.</a>
+                    </p>
+                    <ul class="msg-util-menu">
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-reset"></i><span class="lb">처음단계</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-qa-reset"></i><span class="lb">질문다시하기</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">다른방법으로검색</span></a></li>
+                    </ul>
+                    <span class="time">오후 01:00</span>
+                </div>
+            </div>
+            <!--E:repeat c-msg -->
+
+
+            <!--S:repeat c-msg user -->
+            <div class="c-msg user">
+                <div class="inner">
+                    <p>유저가 쓰는 텍스트</p>
+                    <span class="time">오후 01:00</span>
+                </div>
+            </div>
+            <!--E:repeat c-msg -->
+
+            <div class="c-msg ai">
+                <div class="inner">
+                    <div class="msg-first">
+                        이미 지급정지가 등록되어있어요. <span class="fc-pos">(코드:12019)</span>
+                        <br>228화면으로 가셔서 금융사기 본점요청을 등록하세요.
+                    </div>
+                    <a href="#" class="btn-bic-pos">본점요청 등록하기</a>
+                    <a href="#" class="btn-bic-pos"><i class="ico ico-btn01"></i><span class="lb">본점요청 등록하기</span></a>
+                    <ul class="msg-util-menu">
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-reset"></i><span class="lb">처음단계</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-qa-reset"></i><span class="lb">질문다시하기</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a></li>
+                    </ul>
+                    <span class="time">오후 01:00</span>
+                </div>
+            </div>
+
+            <!-- S : 20200515 추가 -->
+            <!--S:repeat c-msg 다른 방법으로 검색 -->
+            <div class="c-msg ai">
+                <div class="inner">
+                    <div class="ballon">
+                        다른 방법으로 검색, 스크랩 버튼 추가 - 20200515 <br />
+                        <a href="01_guide__04_chat.html">버튼 가이드(html/pc/01_guide__02_button.html) 참고해주세요.</a>
+                    </div>
+                    <a href="#" class="btn-bic-pos">버튼</a>
+
+                    <div class="diff-search-wrap">
+                        <span class="diff-title"><i class="ico ico-search-diff"></i><span class="lb">다른 방법으로 검색</span></span>
+                        <div class="btn-list-group">
+                            <a href="#" class="btn-pos arrow h30">SAM</a>
+                            <a href="#" class="btn-pos arrow h30">S-BASIC</a>
+                            <a href="#" class="btn-pos arrow h30">공문검색</a>
+                            <a href="#" class="btn-pos arrow h30">SOL샘</a>
+                        </div>
+                    </div>
+
+                    <ul class="msg-util-menu">
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-reset"></i><span class="lb">처음단계</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-qa-reset"></i><span class="lb">질문다시하기</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-alarm"></i><span class="lb">신고</span></a></li>
+                        <li><a href="#" class="btn-util-fn"><i class="ico ico-scrap-sm"></i><span class="lb">스크랩</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--E:repeat c-msg -->
+            <!-- E : 20200515 추가 -->
+
+            <!-- S : 20200519 추가 -->
+            <!--S:repeat c-msg ai 스크랩 -->
+            <div class="c-msg ai">
+                <div class="inner">
+                    <!--S:ballon-->
+                    <div class="ballon">
+                        <div class="t-desc">
+                            ‘나의 스크랩’에 스크랩 되었습니다. <br />
+                            무엇을 더 도와 드릴까요?
+                        </div>
+                        <div class="btn-list-group">
+                            <a href="#" class="btn-pos" onclick="javascript: asideOpen(9);">스크랩 확인하기</a>
+                            <a href="#" class="btn-pos" onclick="javascript: asideOpen(8);">나의 스크랩 전체보기</a>
+                        </div>
+                    </div>
+                    <!--E:ballon-->
+                    <span class="time">오후 01:00</span>
+                </div>
+            </div>
+            <!--E:repeat c-msg -->
+            <!-- E : 20200519 추가 -->
+            <!-- E:채팅컨텐츠 -->
+        </div>
+        <!-- E:chat -->
+
+
+        <!-- S:chat-write -->
+        <div class="chat-write">
+            <!--S:채팅입력창-->
+            <div class="chat-write-area js-write-in">
+                <a href="#" class="btn-write-more js-btn-write-more js-link-more-menu" data-href="js-write-menu"><i class="ico ico-wmenu"></i><span class="offscreen">메뉴 더보기</span></a>
+                <input type="text" class="ip-chat js-ip-chat" placeholder="몰리에게 무엇이든 물어보세요" />
+                <a href="#" class="btn-submit" onclick="testMsgAdd();"><i class="ico ico-submit"></i><span class="offscreen">전송</span></a>
+            </div>
+            <!--E:채팅입력창-->
+
+            <!--S:검색어입력창-->
+            <div class="chat-write-search-area js-write-search">
+                <!--채팅메버튼-->
+                <a href="#" class="btn-write-search-close js-btn-search-close" onclick="writeSearchOnOff(0);"><i class="ico ico-wclose"></i><span class="offscreen">이전대화검색종료</span></a>
+                <input type="text" class="ip-search js-ip-search" placeholder="검색어를 입력하세요" />
+                <div class="search-control">
+                    <a href="#" class="btn-arrow disabled"><i class="ico ico-arrow-up"></i><span class="offscreen">위로</span></a>
+                    <span class="num">
+                    <em>1/</em>
+                    <span>6</span>
+                </span>
+                    <a href="#" class="btn-arrow"><i class="ico ico-arrow-down"></i><span class="offscreen">아래로</span></a>
+                </div>
+                <a href="#" class="btn-search-submit"><i class="ico ico-search"></i><span class="offscreen">검색</span></a>
+            </div>
+            <!--E:검색어입력창-->
+
+
+            <!-- S : 200424 수정 | 추천키워드 swiper 삭제, 더보기 형태로 변경 -->
+            <!--S:채팅입력시 연관검색어-->
+            <!--
+			   :: DESC ::
+			   ** 추천 키워드 갯수에 따라 높이 변경. body에 멀티클래스로 제어함.
+			   - CASE 1. 4개 이하 : default
+			   - CASE 2. 5개 ~ 8개 : body.is-rec-large
+			   - CASE 3. 9개 이상 : body.is-rec-expanded 추천 더보기 버튼 활성화 되어 버튼 click시 최대 높이 제어 이벤트 발생 - relativeSearchesMore()
+		    -->
+            <div class="relative-layer js-related-layer">
+                <div class="rec-btn-wrap js-rec-btn-wrap">
+                    <!-- DESC : 추천키워드가 8개 이하인경우, button disabled="disabled" 속성 추가해주세요 -->
+                    <button type="button" class="btn-rec-more js-btn-rec-more" onclick="javascript:relativeSearchesMore();"><span class="btn-text">추천 키워드 더보기</span><i class="ico ico-related-more"></i></button>
+                    <a href="#" class="btn-close" onclick="javascript:relativeSearcheslayerOnOff(0);"><i class="ico ico-related-close"></i><span class="offscreen">닫기</span></a>
+                </div>
+                <!--S:related-wrap-->
+                <div class="related-wrap js-related-wrap">
+                    <ul class="list hover">
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-1" type="radio" name="ex-radio-5">
+                                <label for="ex-radio-5-1">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>시장 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래 정보조회할래</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-2" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-2">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘사기 본점접수해줘 사기 본점접수해줘 222</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-3" type="radio" name="ex-radio-5">
+                                <label for="ex-radio-5-3">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘333</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-4" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-4">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘444</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-5" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-5">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘555</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-6" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-6">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘666</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-7" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-7">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘777</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-8" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-8">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘888</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                        <li class="item">
+                            <span class="rc-item mark">
+                                <input id="ex-radio-5-9" type="radio" name="ex-radio-5" >
+                                <label for="ex-radio-5-9">
+                                    <span class="lb">
+                                        <a href="#" class="link ellipsis"><em>금융</em>사기 본점접수해줘 사기 본점접수해줘999</a>
+                                    </span>
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <!--E:related-wrap-->
+            </div>
+            <!--E:채팅입력시 연관검색어-->
+            <!-- E : 200424 수정 | 추천키워드 swiper 삭제, 더보기 형태로 변경 -->
+
+            <!--S:채팅더보기메뉴-->
+            <div class="js-write-menu write more-menu js-more-menu" data-link="js-btn-write-more">
+                <ul class="more-menu-list">
+                    <li class="item">
+                        <a href="#" class="link">
+                            <i class="ico ico-util04"></i>
+                            <em class="lb">몰리 학습시키기</em>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#" class="link" onclick="writeSearchOnOff(1);">
+                            <i class="ico ico-util05"></i>
+                            <em class="lb">이전대화검색</em>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--E:채팅더보기메뉴-->
+        </div>
+        <!-- E:chat-write -->
+
+        <!-- S : 200429 추가 event-banner-wrap -->
+        <div class="event-banner-wrap swiper-container js-event-banner">
+            <!-- S : 20200511 수정 | 이벤트 배너 TYPE 추가 -->
+            <div class="event-banner-wrapper swiper-wrapper">
+                <!-- DESC :
+					이벤트 배너 이미지 변경
+					** CASE 1~4.
+					- 배경 background로 등록, 텍스트 하드코딩(최대 2줄노출)
+					- event-item style background-color, event-banner background-image 속성 수정 필요
+					- 세로 높이 76px 고정, 화면 가로 사이즈 커질 경우 배경 이미지는 가운데 정렬으로 위치함.
+					- background-color: 이벤트 배너 배경 색상 rgb 값 (ex #fbeb77)
+					- background-image: 이벤트 배너 배경 이미지 url
+
+					** CASE 5. 이벤트 img 태그로 등록 시
+					- height 100% 기준 가로 가운데 정렬
+					- event-item background-color 지정 필요
+				 -->
+
+                <!-- S : Repeat CASE 1. POINT -->
+                <div class="event-item swiper-slide" style="background-color: #fbeb77;">
+                    <a href="#" class="event-link" onclick="testEventChat($(this));">
+                        <div class="event-banner" style="background-image: url(../../resources/images/mo/common/bg_top_banner_point.jpg)">
+                            <p class="event-desc">지금 ‘몰리를 이겨라’에 도전해보세요! <br /> 지금 ‘몰리를 이겨라’에 도전해보세요! 즉시 포인트를 지급해 드립니다.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- E : Repeat CASE 1. POINT -->
+                <!-- S : Repeat CASE 2. EVENT -->
+                <div class="event-item swiper-slide" style="background-color: #fcffad;">
+                    <a href="#" class="event-link" onclick="testEventChat($(this));">
+                        <div class="event-banner" style="background-image: url(../../resources/images/mo/common/bg_top_banner_event.jpg)">
+                            <p class="event-desc">‘몰리를 이겨라’ 이벤트 중입니다! <br />홍길동 차장님 다음에 다시만나요~</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- E : Repeat CASE 2. EVENT -->
+                <!-- S : Repeat CASE 3. NOTICE -->
+                <div class="event-item swiper-slide" style="background-color: #ffc6a3;">
+                    <a href="#" class="event-link" onclick="testEventChat($(this));">
+                        <div class="event-banner" style="background-image: url(../../resources/images/mo/common/bg_top_banner_notice.jpg)">
+                            <p class="event-desc">몰리의 능력이 더욱 강해졌어요! <br />새로운 기능을 확인해보세요.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- E : Repeat CASE 3. NOTICE -->
+                <!-- S : Repeat CASE 4. RECOMMEND -->
+                <div class="event-item swiper-slide" style="background-color: #ffd987;">
+                    <a href="#" class="event-link" onclick="testEventChat($(this));">
+                        <div class="event-banner" style="background-image: url(../../resources/images/mo/common/bg_top_banner_rec.jpg)">
+                            <p class="event-desc">홍길동 차장님, 금융거래 목적이 <br />궁금하셔서 들어오셨나요?</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- E : Repeat CASE 4. RECOMMEND -->
+
+                <!-- S : Repeat CASE 5. 기타(img 태그로 등록 시) -->
+                <div class="event-item swiper-slide" style="background-color: #fbeb77;">
+                    <a href="#" class="event-link" onclick="testEventChat($(this));">
+                        <div class="event-banner">
+                            <img src="../../resources/images/mo/temp/temp_event_banner.jpg" alt="이미지 등록시 alt값 받음 해당 속성에 이벤트 내용 추가">
+                        </div>
+                    </a>
+                </div>
+                <!-- E : Repeat CASE 5. 기타(img 태그로 등록 시) -->
+            </div>
+            <!-- E : 20200511 수정 | 이벤트 배너 TYPE 추가 -->
+            <div class="swiper-pagination"></div>
+            <a href="#" onclick="javascript:eventAreaClose();" class="btn-close-event js-close-event"><i class="ico ico-event-close"></i><span class="offscreen">이벤트 배너 닫기</span></a>
+        </div>
+        <!-- E : 200429 추가 event-banner-wrap -->
+    </div>
+    <!-- E:채팅 영역 MASK AREA -->
+    <!-- E:wrapper -->
+
+
+
+    <!-- S:go_bottom -->
+    <!-- DESC:스크롤위로 올라가면 맨아래로 버튼 : 스크롤 일정간격 올라갔을때만 작동 20190830 hide add-->
+    <a href="#" class="btn-go-bottom js-go-bottom hide"><i class="ico ico-go-bottom"></i><span class="offscreen">맨아래로</span></a>
+    <!-- E:go_bottom -->
+
+
+
+    <!-- S : 20200429 삭제 mo 튜토리얼 삭제 -->
+    <!--S:tutorial add 20191030 eventbind {ui.mo.js}-->
+    <!--<div class="tutorial-wrap js-tutorial-wrap">
+        <div class="overlay-tutorial"></div>
+        <div class="overlay-tutorial-bar"></div>
+
+        &lt;!&ndash;S:tutorial-swiper&ndash;&gt;
+        <div class="tutorial-swiper js-tutorial-swiper">
+            <ul class="swiper-wrapper">
+                <li class="swiper-slide item">
+                    <div class="inner">
+                        <div class="mtitle">MOLI 메인화면 설명</div>
+                        <img src="../../resources/images/mo/common/img_tutorial_01.png">
+                    </div>
+                </li>
+                <li class="swiper-slide item">
+                    <div class="inner">
+                        <div class="mtitle">지식 채팅 이용 방법</div>
+                        <img src="../../resources/images/mo/common/img_tutorial_02.png">
+                    </div>
+                </li>
+                <li class="swiper-slide item">
+                    <div class="inner">
+                        <div class="mtitle">실행 메뉴 이용 방법</div>
+                        <img src="../../resources/images/mo/common/img_tutorial_03.png">
+                    </div>
+                </li>
+                <li class="swiper-slide item">
+                    <div class="inner">
+                        <div class="mtitle">나만의 실행메뉴 등록 방법</div>
+                        <img src="../../resources/images/mo/common/img_tutorial_04.png">
+                    </div>
+                </li>
+                <li class="swiper-slide item">
+                    <div class="inner">
+                        <div class="mtitle">틀린 지식 신고하기</div>
+                        <img src="../../resources/images/mo/common/img_tutorial_05.png">
+                    </div>
+                </li>
+                <li class="swiper-slide item">
+                    <div class="inner">
+                        <div class="mtitle">몰리 학습시키기</div>
+                        <img src="../../resources/images/mo/common/img_tutorial_06.png">
+                    </div>
+                </li>
+            </ul>
+
+            &lt;!&ndash; Add Pagination &ndash;&gt;
+            <div class="swiper-pagination"></div>
+            &lt;!&ndash; Add Arrows &ndash;&gt;
+            <a href="javascript:" class="btn-arrow prev"><span class="lb">이전</span></a>
+            <a href="javascript:" class="btn-arrow next"><span class="lb">다음</span></a>
+            <a href="javascript:" class="btn-arrow go js-btn-tutorial-go" onclick="tutorialLayerOnOff(0);"><span class="lb">몰리 이용하러가기</span><i class="ico ico-prev-arrow"></i></a>
+
+            <a href="#" class="btn-tutorial-close js-tutorial-close" onclick="tutorialLayerOnOff(0);"><span class="offscreen">튜토리얼닫기</span></a>
+        </div>
+        &lt;!&ndash;E:tutorial-swiper&ndash;&gt;
+    </div>-->
+    <!--E:tutorial add 20191030-->
+    <!-- E : 20200429 삭제 mo 튜토리얼 삭제 -->
+
+
+    <!-- S : 20200511 | 메일그룹 추가/편집 팝업 추가  -->
+    <div class="pop-mail-group-manager" data-role="dialog" data-width="350">
+        <div class="offscreen js-title">메일 주소 그룹</div>
+        <div class="p-cont">
+            <table class="tbl-write">
+                <tr>
+                    <th>그룹명 <span class="fc-pos">*</span></th>
+                </tr>
+                <tr>
+                    <td class="input"><input type="text"  placeholder="그룹명을 입력하세요." /></td>
+                </tr>
+                <tr>
+                    <th>
+                        <div class="th-flex-box">
+                            메일 <span class="fc-pos">(0)</span>
+                            <div class="fr">
+                                <a href="#" class="btn-sm">추가</a>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+                <tr>
+                    <td class="input">
+                        <div class="mail-address-box js-mail-address-box">
+                            <ul class="mail-address-list">
+                                <!-- s : repeat -->
+                                <li>
+                                    <div class="list-box">
+                                        <input type="text" class="name" placeholder="이름" value="김길동" />
+                                        <input type="text" class="address" placeholder="메일을 입력하세요." value="kim12345@mailaddress.co.kr" />
+                                        <a href="#" class="btn-delete"><i class="ico ico-16-x"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <!-- e : repeat -->
+                                <!-- s : repeat -->
+                                <li>
+                                    <div class="list-box">
+                                        <input type="text" class="name" placeholder="이름" />
+                                        <input type="text" class="address" placeholder="메일을 입력하세요." />
+                                        <a href="#" class="btn-delete"><i class="ico ico-16-x"></i><span class="offscreen">삭제</span></a>
+                                    </div>
+                                </li>
+                                <!-- e : repeat -->
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="p-foot">
+            <div class="btn-list-group">
+                <button class="btn-pos">저장</button>
+            </div>
+        </div>
+    </div>
+    <!-- E : 20200511 | 메일그룹 추가/편집 팝업 추가  -->
+</body>
+
+</html>

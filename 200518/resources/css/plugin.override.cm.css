@@ -1,0 +1,408 @@
+@charset "utf-8";
+/*
+ * 파일정의 : plugin.override.cm.css
+ * 파일설명 : 플러그인 override 공통
+ * 작성자 :  glim 한지혜
+ * 주의사항 : 주석표기는 페이지 접근방법을 알수 있도록 표시
+ * 최초작성일: 2019/07/17
+ * 최종수정일: 2020/05/11
+ *  20200511 aside custom scroll padding 수정
+ */
+
+
+
+/**********************************************************************************
+mCustormScrollbar
+***********************************************************************************/
+.mCSB_inside > .mCSB_container{
+    margin-right: 0;
+}
+
+.mCSB_scrollTools .mCSB_draggerRail {
+    width:6px;
+    background-color: rgba(224,224,224,0.1);
+}
+.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
+    width:6px;
+    background-color: #c2c2c2;
+    background-color: rgba(194,194,194,0.3);
+}
+
+.mCSB_scrollTools .mCSB_draggerContainer {
+    top:5px;
+    bottom: 5px;
+}
+
+.mCSB_scrollTools {z-index: 4;}
+
+.mCSB_scrollTools .mCSB_dragger:active .mCSB_dragger_bar,
+.mCSB_scrollTools .mCSB_dragger.mCSB_dragger_onDrag .mCSB_dragger_bar{
+    background-color: #c2c2c2; background-color: rgba(194,194,194,0.4);
+    filter: "alpha(opacity=70)"; -ms-filter: "alpha(opacity=70)";
+}
+.mCSB_scrollTools .mCSB_dragger:hover .mCSB_dragger_bar{
+    background-color: #c2c2c2; background-color: rgba(194,194,194,0.4);
+    filter: "alpha(opacity=70)"; -ms-filter: "alpha(opacity=70)";
+}
+
+.chat .mCSB_inside > .mCSB_container{
+    padding:40px 22px 30px;
+}
+
+.aside .mCSB_inside > .mCSB_container{
+    padding:62px 22px 20px; /* 20200511 수정 */
+    min-height: calc(100% - 103px);
+}
+
+.textarea-wrapper .mCSB_inside > .mCSB_container{
+    padding:0;
+}
+.textarea-wrapper .mCSB_container{padding:0 20px; }
+.textarea-wrapper .mCSB_scrollTools {right: 0px;}
+.textarea-wrapper .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {width:4px; background-color: #d1cbdb; }
+.textarea-wrapper .mCSB_scrollTools .mCSB_draggerRail {width:4px; background-color: #e9e4ef; }
+.textarea-wrapper .mCSB_scrollTools .mCSB_draggerContainer {top:5px; bottom:5px}
+
+
+
+.textarea-wrapper{
+    height:150px;
+    overflow:hidden;
+    background-color: #fff;
+    border: 1px solid #d5d5d5;
+    vertical-align: top;
+    box-sizing: border-box;
+    /*padding: 0 12px 0;*/
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-appearance: none;
+    letter-spacing: -0.25px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.textarea-wrapper.is-active {
+    border: 1px solid #7343eb;
+}
+
+.textarea-wrapper textarea{
+    position: relative;
+    resize:none;
+    overflow:hidden;
+    outline:none;
+    height:100%;
+    border:none;
+    background:transparent;
+    box-shadow: none;
+    width: calc(100% - 10px);
+    min-width: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+    /*width:50%;
+    min-width:50%;
+    background-color: #ff3399;*/
+    color: #000;
+    font-size: 12px !important;
+    line-height: 16px;
+    font-family: 'OneShinhan', serif !important;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    padding: 12px 12px;
+}
+.textarea-wrapper textarea:focus {
+    border:none;
+}
+
+.textarea-wrapper .textarea-clone{
+    position:absolute;
+    top:-9999px;
+    left:-9999px;
+    width: calc(100% - 10px);
+    min-width: calc(100% - 10px);
+    max-width: calc(100% - 10px);
+    visibility:hidden;
+    font-size: 12px !important;
+    line-height: 16px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    box-sizing: border-box;
+    padding: 12px 12px;
+}
+
+.textarea-example .content .textarea-wrapper .mCSB_scrollTools{ margin: 10px 5px; }
+
+
+/**********************************************************************************
+jquery-scroll
+***********************************************************************************/
+
+
+/**********************************************************************************
+* tooltip ** plugin.override.cm.css 이동 20190821
+***********************************************************************************/
+.ui-widget { font-family: 'OneShinhan' !important; }
+.ui-widget * { font-family: 'OneShinhan' !important; }
+.ui-tooltip {
+    background: rgba(255,255,255,0.95);
+    box-shadow: 0 0 0 transparent;
+    -webkit-box-shadow:  0 0 0 transparent;
+}
+.ui-tooltip {
+    max-width: 400px;
+    margin: 0 10px;
+    padding:9px 10px 10px;
+    color: #fff;
+    border-radius: 0;
+    font-size: 12px !important;
+    text-transform: none ;
+    box-shadow: 0 0 0 transparent;
+    -webkit-box-shadow:  0 0 0 transparent;
+    word-break:break-all;
+}
+.ui-widget.ui-widget-content{
+    border:0;
+    background: rgba(30,14,55,0.85);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.ui-widget-shadow{box-shadow: 0 0 0 transparent;}
+
+
+/**********************************************************************************
+//tooltip
+***********************************************************************************/
+
+
+
+/**********************************************************************************
+* dialog
+***********************************************************************************/
+.ui-widget.ui-widget-content[role=dialog]{
+    border: 0;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding:0;
+    background-color: #f8f5fc;
+}
+.ui-dialog[role=dialog] .ui-dialog-titlebar {
+    text-align: center;
+    height:60px;
+    padding: 20px 45px;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    border:0;
+    border-image: initial;
+    background: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+.ui-dialog[role=dialog] .ui-dialog-title {
+    width: 100%;
+    margin:0;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    right:18px;
+    padding:0;
+    width:20px;height: 20px;
+    border:0;
+    background: url(../images/pc/ui/ico_dialog_close.png) no-repeat center center;
+}
+.ui-dialog .ui-dialog-content {
+    padding:12px 0 14px;
+}
+.ui-dialog .ui-dialog-content .p-cont {
+    max-height: 556px;
+    padding:0 20px 26px;
+    /*background: #eee;*/
+}
+.ui-dialog .ui-dialog-content .js-pop-scroll{
+    margin:10px -20px 0;
+}
+.ui-dialog .ui-dialog-content .js-pop-scroll .mCSB_container{padding:0 20px; }
+.ui-dialog .ui-dialog-content .js-pop-scroll .mCSB_scrollTools {right: 5px;}
+.ui-dialog .ui-dialog-content .js-pop-scroll .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {width:4px; background-color: #d1cbdb; }
+.ui-dialog .ui-dialog-content .js-pop-scroll .mCSB_scrollTools .mCSB_draggerRail {width:4px; background-color: #e9e4ef; }
+.ui-dialog .ui-dialog-content .js-pop-scroll .mCSB_scrollTools .mCSB_draggerContainer {top:0; bottom:0}
+
+.ui-dialog .ui-dialog-content .p-foot {
+    padding:0 14px 0;
+}
+.ui-dialog .ui-dialog-content .p-foot .btn-list-group{
+    margin-top:0;
+}
+.ui-dialog .ui-dialog-content .p-cont + .p-foot { margin-top:-12px;}
+.ui-dialog .ui-dialog-content .p-foot + .p-foot {margin-top:14px;}
+.ui-widget-overlay {
+    background: #000;
+    opacity: 1;
+    /*-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity= 60); !* // for IE8 *!
+    filter: alpha(opacity= 60); !* //for IE5-7 *!*/
+    background: radial-gradient(circle, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 100%);
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+    text-align: center;
+    border-top:0;
+    margin:0;
+    padding: 0 16px 14px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    display: flex; position: relative; font-size: 0;
+    width:100%;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button { margin:auto; line-height: 1; font-weight: bold; }
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button + .ui-button { margin-left: 4px; }
+.ui-dialog .ui-dialog-content + .ui-dialog-buttonpane {margin-top: -22px;}
+
+/*서류선택*/
+.pop-doc-select .p-cont .js-pop-scroll{height: 320px;}
+.pop-doc-form-select .p-cont .js-pop-scroll{height: 320px;}
+.pop-currency-select .p-cont .js-pop-scroll {height: 350px;}
+.pop-currency-select .p-cont .list-selected {height: auto;}
+.pop-question-select .p-cont .js-pop-scroll {height: 385px;}
+.pop-question-select .p-cont .list-selected {height: auto;}
+
+.ui-dialog .pop-datepicker.ui-dialog-content .p-cont {padding:0 20px;}
+.ui-dialog .pop-datepicker.ui-dialog-content { padding:0; }
+
+
+.no-bg.ui-widget.ui-widget-content[role=dialog] {background-color: transparent;}
+.no-bg.ui-widget.ui-widget-content[role=dialog] .ui-dialog-titlebar {display: none;}
+.pop-loading {}
+.pop-loading .loading-cont {text-align: center;}
+.pop-loading .loading-cont > img {width:120px;}
+.pop-loading .loading-cont > .txt {margin-top:6px; line-height:1.5; font-size: 12px; color:#cdacff;}
+
+
+/**********************************************************************************
+* //dialog
+***********************************************************************************/
+
+
+/**********************************************************************************
+** datepicker
+***********************************************************************************/
+
+.datepicker-wrap { margin-bottom: -10px; }
+.datepicker-wrap .ui-datepicker { width: 100%; padding: 0; margin-top: 15px; }
+.datepicker-wrap .ui-widget.ui-widget-content { border: 0; text-align: center; margin-top:0; background: transparent;}
+.datepicker-wrap .ui-datepicker .ui-widget-header { display: inline-block; padding: 1px 0; margin: 0 40px; background: transparent; border: 0; color: #665e88; font-size: 14px; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-title { line-height: 18px; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-prev,
+.datepicker-wrap .ui-datepicker .ui-datepicker-next {
+    top: 0;
+    width: 20px;
+    height: 20px;
+}
+.datepicker-wrap .ui-datepicker .ui-datepicker-prev-hover,
+.datepicker-wrap .ui-datepicker .ui-datepicker-next-hover {
+    top: 0;
+    border: 0;
+    background-color: transparent;
+}
+.datepicker-wrap .ui-datepicker .ui-datepicker-prev { left: 0; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-next { right: 0; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-prev-hover { left: 0; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-next-hover { right: 0; }
+
+.datepicker-wrap .ui-datepicker .ui-datepicker-prev span,
+.datepicker-wrap .ui-datepicker .ui-datepicker-next span { position: static; width: 20px; height: 20px; margin: 0; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-prev span { background: url(../images/pc/ui/btn_calendar_prev.png) 0 0 no-repeat; background-size: 20px; }
+.datepicker-wrap .ui-datepicker .ui-datepicker-next span {background: url(../images/pc/ui/btn_calendar_next.png) 0 0 no-repeat; background-size: 20px; }
+
+.datepicker-wrap .ui-datepicker table { margin-top: 8px; }
+.datepicker-wrap .ui-datepicker th { padding: 6px 0; color: #665e88; font-size: 12px;  font-weight: bold;}
+.datepicker-wrap .ui-datepicker td { padding: 6px 0; }
+.datepicker-wrap .ui-datepicker .ui-state-default,
+.datepicker-wrap .ui-datepicker .ui-widget-content .ui-state-default,
+.datepicker-wrap .ui-datepicker .ui-widget-header .ui-state-default,
+.datepicker-wrap .ui-datepicker .ui-button,
+.datepicker-wrap .ui-datepicker .ui-button.ui-state-disabled:hover,
+.datepicker-wrap .ui-datepicker .ui-button.ui-state-disabled:active {
+    overflow: hidden;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    text-align: center;
+    line-height: 24px;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 24px;
+    vertical-align: top;
+}
+
+.datepicker-wrap .ui-datepicker .ui-state-active, .ui-widget-content .ui-state-active,
+.datepicker-wrap .ui-datepicker .ui-widget-header .ui-state-active,
+.datepicker-wrap .ui-datepicker a.ui-button:active,
+.datepicker-wrap .ui-datepicker .ui-button:active,
+.datepicker-wrap .ui-datepicker .ui-button.ui-state-active:hover {
+    background: #7343eb;
+    color: #fff;
+}
+
+.pop-datepicker .datepicker-wrap .ui-widget.ui-widget-content { margin-top: 0; }
+
+
+
+/**********************************************************************************
+** swiper
+***********************************************************************************/
+
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-container-horizontal >
+.swiper-pagination-bullets{ bottom:-4px; }
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet{
+    margin:0 2px;
+}
+.swiper-pagination-bullet {
+    border:solid 1px rgba(255,255,255,1);
+    /*background-color: rgba(255,255,255,0.4);*/
+    background-color: transparent;
+    opacity: 0.4;
+}
+.swiper-pagination-bullet-active {
+    border:solid 1px rgba(255,255,255,1);
+    background-color:  rgba(255,255,255,1);
+}
+
+.swiper-scrollbar-cursor-drag {
+    cursor: pointer;
+}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+    /*max-width: 280px;
+    margin-left: -140px;
+    left:50%;*/
+    width:80%;
+    margin-left:-40%;
+    left:50%;
+    overflow: hidden;
+    height:20px;
+}

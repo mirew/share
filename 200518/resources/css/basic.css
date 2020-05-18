@@ -1,0 +1,113 @@
+@charset "utf-8";
+/*
+ * 파일정의 : basic.css
+ * 파일설명 : basic css
+ * 작성자 :  glim 한지혜
+ * 주의사항 : 주석표기는 페이지 접근방법을 알수 있도록 표시
+ * 최초작성일: 2019/07/17
+ * 최종수정일: 2018/08/06
+ */
+
+
+
+html { /*overflow-x: hidden;*/ }
+body { height: 100%; line-height: 1.4; font-size: 14px; font-family: 'OneShinhan', serif; word-break: keep-all; letter-spacing: -0.5px;}
+body, body * { -webkit-text-size-adjust: none; }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, th, td, p { margin: 0; padding:0; -webkit-text-size-adjust:none; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img, abbr, acronym { border: 0; }
+legend { position: absolute; *margin-left: -7px; height: 0; line-height: 0; font-size: 0; overflow: hidden; }
+address, caption, cite, code, dfn, em, var { font-style: normal; font-weight: normal; }
+ol,ul { list-style: none; }
+caption { height: 0; line-height: 0; font-size: 0; overflow: hidden; text-indent: -10000px; }
+q:before, q:after { content:''; }
+a { color: inherit; text-decoration: none; }
+hr { display: none; }
+button { padding: 0; border: 0 none; background: none; }
+label { cursor: pointer; }
+
+header, footer, article, section, aside, details, figure, figcaption, nav, hgroup { display: block; margin: 0; padding: 0; }
+audio[controls], canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+button, input, select, textarea { margin: 0; font-size: 100%; vertical-align: baseline; *vertical-align: middle; }
+button, input { line-height: normal; *overflow: visible; }
+table button, table input { *overflow: auto; }
+button, html input[type="button"], input[type="reset"], input[type="submit"] { cursor: pointer; -webkit-appearance: button; }
+
+input[type="text"],
+input[type="password"], 
+input[type="number"],
+input[type="email"] { -webkit-appearance: none; -moz-appearance: none; appearance: none; box-shadow: none; border-radius: 0; font-size:14px; }
+
+input[type="checkbox"], input[type="radio"] { box-sizing: border-box; }
+input[type="search"] { -webkit-appearance: textfield; -moz-box-sizing: content-box; -webkit-box-sizing: content-box; box-sizing: content-box; }
+input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+button::-moz-focus-inner, input::-moz-focus-inner { border: 0; padding: 0; }
+textarea { overflow: auto; vertical-align: top; }
+textarea::-webkit-input-placeholoder { color:#888; border-color: #d5d5d5; }
+textarea::-webkit-scrollbar { width: 3px; border-radius:1.5px; }
+textarea::-webkit-scrollbar-thumb { background: #ccc; }
+textarea::-webkit-scrollbar-thumb:window-inacrive { background: #ccc; }
+
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-moz-placeholder,
+::-ms-input-placeholder {  color: #000; }
+
+
+#skip_nav { width: 100%; height: 0; text-align: center; overflow: hidden; }
+#skip_nav a { color: #005aab; line-height: 20; font-size: 14px; font-weight: bold; float: left; }
+#skip_nav a:focus,
+#skip_nav a:hover,
+#skip_nav a:active { position: absolute; top: 0; left: 0; width: 100%; height: 20px; text-decoration: underline; background: #fff; overflow: visible; z-index: 100; }
+
+a,
+a:focus,
+a:hover,
+a:active,
+input,
+textarea {outline:none; select-dummy: expression(this.hideFocus=true);}
+
+/* Disable orange highlight */
+label, a, button {-o-tap-highlight-color:rgba(0, 0, 0, 0);-ms-tap-highlight-color:rgba(0, 0, 0, 0);-moz-tap-highlight-color rgba(0, 0, 0, 0);-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+button {outline: none; font-family: 'OneShinhan';}
+/*button:disabled {opacity:0.5;}*/
+
+
+
+/**********************************************************************************
+** IR
+***********************************************************************************/
+/* 화면에서 숨김 */
+.offscreen { position: absolute; display: block; overflow: hidden; height: 1px; width: 1px; clip: rect(1px, 1px, 1px, 1px);}
+
+
+
+/**********************************************************************************
+** FONT
+***********************************************************************************/
+@font-face{
+    font-family:'OneShinhan';
+    src :  local(※),
+    url('font/OneShinhanLight.woff') format('woff'),
+    url('font/OneShinhanLight.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face{
+    font-family:'OneShinhan';
+    src :  local(※),
+    url('font/OneShinhanMedium.woff') format('woff'),
+    url('font/OneShinhanMedium.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+/*20190718 inline-block 설정일때 하단에 여백 7px 정도 생김 */
+.ellipsis {
+    display: block;
+    width:200px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}

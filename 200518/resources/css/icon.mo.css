@@ -1,0 +1,599 @@
+@charset "utf-8";
+/*
+ * 파일정의 : icon.mo.css
+ * 파일설명 : icon.mo.css
+ * 작성자 :  glim 한지혜
+ * 주의사항 : 주석표기는 페이지 접근방법을 알수 있도록 표시
+ * 최초작성일: 2019/07/17
+ * 최종수정일: 2020/05/15
+ * 20191030 nav-list.bottom 튜토리얼/사이즈 버튼 추가
+ * 20200108 서비스추가에 따른 버튼 추가
+ * 20200424 추천 키워드 더보기 버튼 추가
+ * 20200429 lnb, home icon 추가
+ * 20200511 ico-delete16, ico-util06, ico-alert30, ico-question, 전체메뉴 icon 추가
+ * 20200515 ico background-size 수정, 전체메뉴 아이콘 추가, 다른방법으로검색, 스크랩 추가
+ */
+
+
+/* 아이콘만 있을 경우 */
+.wico { width:70px; height:70px; overflow: hidden; position: relative; display: inline-block; background-image: url(../images/mo/ui/ui_icon_weather.png); background-size:420px 70px; background-repeat: no-repeat; vertical-align: top; }
+.wico.wico01 { background-position: 0 0;}
+.wico.wico02 { background-position: -70px 0;}
+.wico.wico03 { background-position: -140px 0;}
+.wico.wico04 { background-position: -210px 0;}
+.wico.wico05 { background-position: -280px 0;}
+.wico.wico06 { background-position: -350px 0;}
+
+/**********************************************************************************
+** ICON LIST TYPE
+***********************************************************************************/
+
+/* 아이콘만 있을 경우 */
+.ico { overflow: hidden; position: relative; display: inline-block; background-image: url(../images/mo/common/ico_sprite_mo.png); background-size:1000px 400px; background-repeat: no-repeat; vertical-align: top; } /* 20200515 수정 */
+
+.ico.ico-home {width: 16px; height: 16px; background-position: -241px -10px; } /* 20200429 추가 */
+.ico.ico-aside {width:24px; height:24px; background-position: -10px -10px;}
+.ico.ico-aside:active {background-position: -45px -10px;}
+
+/*nav-icon*/
+.ico.ico-nav01 {width:26px; height:26px; background-position: -250px 0;}
+.ico.ico-nav02 {width:26px; height:26px; background-position: -276px 0;}
+.ico.ico-nav03 {width:26px; height:26px; background-position: -302px 0;}
+.is-active a .ico.ico-nav01 {background-position: -250px -26px;}
+.is-active a .ico.ico-nav02 {background-position: -276px -26px;}
+.is-active a .ico.ico-nav03 {background-position: -302px -26px;}
+.is-active a:hover .ico.ico-nav01 {background-position: -250px -52px;}
+.is-active a:hover .ico.ico-nav02 {background-position: -276px -52px;}
+.is-active a:hover .ico.ico-nav03 {background-position: -302px -52px;}
+
+.ico.ico-event-close{width: 16px; height: 16px; background-position: -302px -10px;} /* 20200429 추가 */
+
+/* < 60px *******************************************************************/
+.ico.ico-submit {width:45px; height:45px; background-position: -10px -90px;}
+.ico.ico-submit:hover {background-position: -10px -90px;}
+
+.ico.ico-go-bottom  {width:35px; height:35px; background-position: -290px -90px;}
+.ico.ico-go-bottom:active  {background-position: -350px -90px;}
+
+.ico.ico-nomenu  {width:55px; height:55px; background-position: -110px -90px;}
+.ico.ico-nochat  {width:55px; height:55px; background-position: -170px -90px;}
+.ico.ico-nochat-dark  {width:55px; height:55px; background-position: -230px -90px;}
+
+
+/* < 20px *******************************************************************/
+.ico-setting {width:18px; height:18px; background-position: -80px -10px;}
+.ico-tutorial {width:18px; height:18px; background-position: -185px -9px;}
+/* S : 20200429 추가 */
+.ico-logout {width:16px; height:15px; background-position: -262px -10px;}
+.ico-scrap {width:13px; height:15px; background-position: -284px -10px;}
+/* E : 20200429 추가 */
+
+/* 2020년 01월07일  LCH  S:나가기버튼 추가*/
+.ico-back {width:18px; height:18px; background-position: -185px -9px;}
+/* 2020년 01월07일  LCH  S:나가기버튼 추가*/
+a:active .ico-tutorial {background-position: -220px -9px;}
+
+.is-active .ico-setting {background-position: -115px -10px;}
+
+.ico.ico-10-x {width:8px; height:8px; background-position: -810px -40px;}
+.ico.ico-10-plus {width:8px; height:8px; background-position: -820px -40px;}
+.ico.ico-10-check {width:8px; height:8px; background-position: -830px -40px;}
+
+.ico.ico-10-x-purple {width:9px; height:9px; background-position: -865px -60px;} /* 20200511 추가 */
+
+
+/*더보기메뉴아이콘*/
+.ico.ico-util01 {width:11px; height:11px; background-position: -310px -40px;}
+a:active .ico.ico-util01 {width:11px; height:11px; background-position: -330px -40px;}
+.ico.ico-util02 {width:11px; height:11px; background-position: -350px -40px;}
+a:active .ico.ico-util02 {width:11px; height:11px; background-position: -370px -40px;}
+.ico.ico-util03 {width:11px; height:11px; background-position: -390px -40px;}
+a:active .ico.ico-util03 {width:11px; height:11px; background-position: -410px -40px;}
+.ico.ico-util04 {width:12px; height:12px; background-position: -430px -40px;}
+a:active .ico.ico-util04 {width:12px; height:12px; background-position: -450px -40px;}
+.ico.ico-util05 {width:12px; height:12px; background-position: -470px -40px;}
+a:active .ico.ico-util05 {width:12px; height:12px; background-position: -490px -40px;}
+.ico.ico-util06 {width:12px; height:12px; background-position: -877px -60px;} /* 20200511 추가 */
+
+.ico.ico-prev-arrow {width:10px; height:10px; background-position: -130px -40px;}
+a:active .ico.ico-prev-arrow {background-position: -150px -40px;}
+
+.ico.bico-plus {width:10px; height:10px; background-position: -170px -40px;}
+
+
+.ico.ico-plus-msg {width:16px; height:16px; background-position: -50px -40px;}
+a:active .ico.ico-plus-msg {width:16px; height:16px; background-position: -70px -40px;}
+
+.ballon .ico.ico-plus-msg {width:16px; height:16px; background-position: -90px -40px;}
+.ballon a:active .ico.ico-plus-msg {width:16px; height:16px; background-position: -10px -40px;}
+.p-cont .ico.ico-plus-msg {width:16px; height:16px; background-position: -90px -40px;}
+.p-cont a:active .ico.ico-plus-msg {width:16px; height:16px; background-position: -10px -40px;}
+
+/*인기질문*/
+.ico.ico-plus {width:15px; height:15px; background-position: -10px -40px ;}
+a:active .ico.ico-plus {background-position: -30px -40px ;}
+
+
+/*ai util icon*/
+.ico.ico-reset {width:12px; height:12px; background-position: -510px -40px;}
+a:active .ico.ico-reset {background-position: -530px -40px;}
+a.disabled .ico.ico-reset,
+button:disabled .ico.ico-reset{background-position: -550px -40px;}
+
+.ico.ico-qa-reset {width:12px; height:12px; background-position: -570px -40px;}
+a:active .ico.ico-qa-reset {background-position: -590px -40px;}
+a.disabled .ico.ico-qa-reset,
+button:disabled .ico.ico-qa-reset{background-position: -610px -40px;}
+
+.ico.ico-alarm {width:12px; height:12px; background-position: -630px -40px;}
+a:active .ico.ico-alarm {background-position: -650px -40px;}
+a.disabled .ico.ico-alarm,
+button:disabled .ico.ico-alarm{background-position: -670px -40px;}
+
+/* S : 20200515 추가 */
+.ico.ico-scrap-sm {width:12px; height:12px; background-position: -910px -60px;}
+a:active .ico.ico-scrap-sm {background-position: -924px -60px;}
+a.disabled .ico.ico-scrap-sm,
+button:disabled .ico.ico-scrap-sm{background-position: -938px -60px;}
+/* E : 20200515 추가 */
+
+.ico.ico-glass {width:12px; height:12px; background-position: -690px -40px;}
+a:active .ico.ico-glass {background-position: -710px -40px;}
+a.disabled .ico.ico-glass,
+button:disabled .ico.ico-glass{background-position: -730px -40px;}
+
+.ico.ico-alarm-pos {width:12px; height:12px; background-position: -750px -40px;}
+a:active .ico.ico-alarm-pos {background-position: -770px -40px;}
+a.disabled .ico.ico-alarm-pos,
+button:disabled .ico.ico-alarm-pos{background-position: -790px -40px;}
+
+
+.ico.ico-document {width:10px; height:13px; background-position: -870px -39px;}
+
+.ico.ico-alert {width:16px; height:16px; background-position: -910px -40px;}
+.ico.ico-alert-red {width:16px; height:16px; background-position: -890px -40px;}
+.ico.ico-alert24 {width:24px; height:24px; background-position: -323px -10px; opacity: .2;} /* 20200511 추가 */
+
+.ico.ico-alert-red12 {width:16px; height:16px; background-position:  -890px -40px;}
+
+.ico.ico-16-x {width:16px; height:16px; background-position: -930px -40px;}
+a:active .ico.ico-16-x {width:16px; height:16px; background-position: -950px -40px;}
+
+
+.ico.ico-reset2 {width:12px; height:12px; background-position: -610px -60px;}
+a:active .ico.ico-reset2 {background-position: -630px -60px;}
+a.disabled .ico.ico-reset2,
+button:disabled .ico.ico-reset2{background-position: -650px -60px;}
+
+.ico.ico-arrow-up18 {width:18px; height:18px; background-position: -250px -60px;;}
+.ico.ico-arrow-down18 {width:18px; height:18px; background-position: -370px -60px;;}
+.is-active .ico.ico-arrow-down18 {width:18px; height:18px; background-position: -250px -60px;}
+
+/*서류선택 paging*/
+.ico.ico-prev,
+.disabled a:active .ico.ico-prev {width:10px; height:10px; background-position: -670px -60px;}
+a:active .ico.ico-prev {background-position: -680px -60px;}
+a.disabled .ico.ico-prev,
+button:disabled .ico.ico-prev {background-position: -690px -60px;}
+
+.ico.ico-next,
+.disabled a:active .ico.ico-next {width:10px; height:10px; background-position: -700px -60px;}
+a:active .ico.ico-next {background-position: -710px -60px;}
+a.disabled .ico.ico-next,
+button:disabled .ico.ico-next {background-position: -720px -60px;}
+
+
+/* < 30px *******************************************************************/
+.ico.ico-wmenu {width:21px; height:21px; background-position: -10px -60px;}
+a:active .ico.ico-wmenu {background-position: -40px -60px;}
+.is-active .ico.ico-wmenu {background-position: -70px -60px;}
+a:active.is-active .ico.ico-wmenu:hover {background-position: -100px -60px;}
+
+.ico.ico-wclose {width:21px; height:21px;background-position: -130px -60px;}
+a:active .ico.ico-wclose {background-position: -160px -60px;}
+
+.ico.ico-search {width:21px; height:21px; background-position: -190px -60px;}
+a:active .ico.ico-search {background-position: -220px -60px;}
+
+/*서류관리 > 서류없을때아이콘*/
+.ico.ico-nodata-alert  {width:23px; height:23px; background-position: -150px -10px;}
+
+.ico.ico-more18 {width:18px; height:18px; background-position: -190px -40px;}
+.is-active > .ico.ico-more18 {width:18px; height:18px; background-position: -210px -40px;}
+.ico.ico-plus18 {width:18px; height:18px; background-position: -270px -40px;}
+/*.ico.ico-plus18:active {background-position: -290px -40px;}*/
+.ico.ico-minus18 {width:18px; height:18px; background-position: -230px -40px;}
+/*.ico.ico-minus18:active {background-position: -250px -40px;}*/
+.is-active .ico.ico-plus18 {width:18px; height:18px; background-position: -230px -40px;}
+
+.ico.ico-arrow-up {width:18px; height:18px; background-position: -250px -60px;}
+.btn-arrow:active .ico.ico-arrow-up {background-position: -280px -60px;}
+.btn-arrow:disabled .ico.ico-arrow-up,
+.btn-arrow.disabled .ico.ico-arrow-up{background-position: -310px -60px;}
+
+
+.ico.ico-arrow-down {width:18px; height:18px; background-position: -340px -60px;}
+.btn-arrow:active .ico.ico-arrow-down{background-position: -370px -60px;}
+.btn-arrow:disabled .ico.ico-arrow-down,
+.btn-arrow.disabled .ico.ico-arrow-down {background-position: -410px -60px;}
+
+
+.ico.ico-arrow-left {width:18px; height:18px; background-position: -430px -60px;}
+.btn-arrow:active .ico.ico-arrow-left{background-position: -460px -60px;}
+.btn-arrow.swiper-button-disabled:active .ico.ico-arrow-left,
+.btn-arrow.swiper-button-disabled .ico.ico-arrow-left,
+.btn-arrow.disabled .ico.ico-arrow-left,
+.btn-arrow:disabled .ico.ico-arrow-left{background-position: -490px -60px;}
+
+
+.ico.ico-arrow-right {width:18px; height:18px; background-position: -520px -60px;}
+.btn-arrow:active .ico.ico-arrow-right{background-position: -550px -60px;}
+.btn-arrow.swiper-button-disabled:active .ico.ico-arrow-right,
+.btn-arrow.swiper-button-disabled .ico.ico-arrow-right,
+.btn-arrow.disabled .ico.ico-arrow-right,
+.btn-arrow:disabled .ico.ico-arrow-right{background-position: -580px -60px;}
+
+.btn-msg-fold .ico.ico-arrow-down {width:18px; height:18px; background-position: -340px -60px;}
+.btn-msg-fold:active .ico.ico-arrow-down{background-position: -370px -60px;}
+.btn-msg-fold.is-active .ico.ico-arrow-down {background-position: -250px -60px;}
+.btn-msg-fold.is-active:active .ico.ico-arrow-down {background-position: -280px -60px;}
+
+/*S : 20200511 추가*/
+.btn-search-menu .ico-mmenu-search {width: 12px; height: 12px; background-position: -826px -60px;}
+.btn-search-menu:active .ico-mmenu-search {background-position: -839px -60px;}
+.btn-search-menu.disabled .ico-mmenu-search, .btn-search-menu:disabled .ico-mmenu-search {background-position: -852px -60px;}
+
+.btn-search-menu.is-active .ico-mmenu-search {background-position: -826px -74px;}
+.btn-search-menu.is-active:active .ico-mmenu-search {background-position: -839px -74px;}
+.btn-search-menu.is-active.disabled .ico-mmenu-search, .btn-search-menu.is-active:disabled .ico-mmenu-search {background-position: -852px -74px;}
+
+.ico-question{width: 16px; height: 16px; background-position: -970px -40px;}
+/*E : 20200511 추가*/
+
+/*S : 20200515 추가*/
+.ico-back-list{width: 6px; height: 10px; background-position: -952px -60px;}
+.ico-edit{width: 10px; height: 10px; background-position: -960px -60px;}
+.ico-search-diff{width: 16px; height: 16px; background-position: -892px -60px;}
+/*E : 20200515 추가*/
+
+
+/* < 24px MENU ICON *******************************************************************/
+.ico.ico-mmenu01 {width:24px; height:24px; background-position: -10px -210px;}
+.ico.ico-mmenu02 {width:24px; height:24px; background-position: -40px -210px;}
+.ico.ico-mmenu03 {width:24px; height:24px; background-position: -70px -210px;}
+.ico.ico-mmenu04 {width:24px; height:24px; background-position: -100px -210px;}
+.ico.ico-mmenu05 {width:24px; height:24px; background-position: -130px -210px;}
+.ico.ico-mmenu06 {width:24px; height:24px; background-position: -160px -210px;}
+.ico.ico-mmenu07 {width:24px; height:24px; background-position: -190px -210px;}
+.ico.ico-mmenu08 {width:24px; height:24px; background-position: -220px -210px;}
+.ico.ico-mmenu09 {width:24px; height:24px; background-position: -250px -210px;}
+.ico.ico-mmenu10 {width:24px; height:24px; background-position: -280px -210px;}
+.ico.ico-mmenu11 {width:24px; height:24px; background-position: -310px -210px;}
+.ico.ico-mmenu12 {width:24px; height:24px; background-position: -340px -210px;}
+.ico.ico-mmenu13 {width:24px; height:24px; background-position: -400px -210px;}
+.ico.ico-mmenu14 {width:24px; height:24px; background-position: -430px -210px;}
+.ico.ico-mmenu15 {width:24px; height:24px; background-position: -460px -210px;}
+.ico.ico-mmenu16 {width:24px; height:24px; background-position: -490px -210px;}
+.ico.ico-mmenu17 {width:24px; height:24px; background-position: -520px -210px;}
+.ico.ico-mmenu18 {width:24px; height:24px; background-position: -550px -210px;}
+.ico.ico-mmenu19 {width:24px; height:24px; background-position: -580px -210px;}
+.ico.ico-mmenu20 {width:24px; height:24px; background-position: -610px -210px;}
+.ico.ico-mmenu21 {width:24px; height:24px; background-position: -640px -210px;}
+.ico.ico-mmenu22 {width:24px; height:24px; background-position: -670px -210px;}
+.ico.ico-mmenu23 {width:24px; height:24px; background-position: -700px -210px;}
+.ico.ico-mmenu24 {width:24px; height:24px; background-position: -730px -210px;}
+.ico.ico-mmenu25 {width:24px; height:24px; background-position: -760px -210px;}
+.ico.ico-mmenu26 {width:24px; height:24px; background-position: -790px -210px;}
+.ico.ico-mmenu27 {width:24px; height:24px; background-position: -820px -210px;}
+.ico.ico-mmenu28 {width:24px; height:24px; background-position: -850px -210px;}
+.ico.ico-mmenu29 {width:24px; height:24px; background-position: -880px -210px;}
+.ico.ico-mmenu30 {width:24px; height:24px; background-position: -910px -210px;}
+.ico.ico-mmenu31 {width:24px; height:24px; background-position: -940px -210px;}
+.ico.ico-mmenu32 {width:24px; height:24px; background-position: -970px -210px;}
+
+/* S : 20200515 수정, 추가 */
+.ico.ico-mmenu33 {width:24px; height:24px; background-position: -10px -321px;}
+.ico.ico-mmenu34 {width:24px; height:24px; background-position: -40px -321px;}
+.ico.ico-mmenu35 {width:24px; height:24px; background-position: -70px -321px;}
+.ico.ico-mmenu36 {width:24px; height:24px; background-position: -100px -321px;}
+.ico.ico-mmenu37 {width:24px; height:24px; background-position: -130px -321px;}
+.ico.ico-mmenu38 {width:24px; height:24px; background-position: -160px -321px;}
+.ico.ico-mmenu39 {width:24px; height:24px; background-position: -190px -321px;}
+.ico.ico-mmenu40 {width:24px; height:24px; background-position: -220px -321px;}
+.ico.ico-mmenu41 {width:24px; height:24px; background-position: -250px -321px;}
+.ico.ico-mmenu42 {width:24px; height:24px; background-position: -280px -321px;}
+.ico.ico-mmenu43 {width:24px; height:24px; background-position: -310px -321px;}
+.ico.ico-mmenu44 {width:24px; height:24px; background-position: -340px -321px;}
+.ico.ico-mmenu45 {width:24px; height:24px; background-position: -370px -321px;}
+.ico.ico-mmenu46 {width:24px; height:24px; background-position: -400px -321px;}
+.ico.ico-mmenu47 {width:24px; height:24px; background-position: -430px -321px;}
+.ico.ico-mmenu48 {width:24px; height:24px; background-position: -460px -321px;}
+.ico.ico-mmenu49 {width:24px; height:24px; background-position: -490px -321px;}
+/* E : 20200515 수정, 추가 */
+
+
+.hover .link:active .ico.ico-mmenu01 {background-position: -10px -150px;}
+.hover .link:active .ico.ico-mmenu02 {background-position: -40px -150px;}
+.hover .link:active .ico.ico-mmenu03 {background-position: -70px -150px;}
+.hover .link:active .ico.ico-mmenu04 {background-position: -100px -150px;}
+.hover .link:active .ico.ico-mmenu05 {background-position: -130px -150px;}
+.hover .link:active .ico.ico-mmenu06 {background-position: -160px -150px;}
+.hover .link:active .ico.ico-mmenu07 {background-position: -190px -150px;}
+.hover .link:active .ico.ico-mmenu08 {background-position: -220px -150px;}
+.hover .link:active .ico.ico-mmenu09 {background-position: -250px -150px;}
+.hover .link:active .ico.ico-mmenu10 {background-position: -280px -150px;}
+.hover .link:active .ico.ico-mmenu11 {background-position: -310px -150px;}
+.hover .link:active .ico.ico-mmenu12 {background-position: -340px -150px;}
+.hover .link:active .ico.ico-mmenu13 {background-position: -400px -150px;}
+.hover .link:active .ico.ico-mmenu14 {background-position: -430px -150px;}
+.hover .link:active .ico.ico-mmenu15 {background-position: -460px -150px;}
+.hover .link:active .ico.ico-mmenu16 {background-position: -490px -150px;}
+.hover .link:active .ico.ico-mmenu17 {background-position: -520px -150px;}
+.hover .link:active .ico.ico-mmenu18 {background-position: -550px -150px;}
+.hover .link:active .ico.ico-mmenu19 {background-position: -580px -150px;}
+.hover .link:active .ico.ico-mmenu20 {background-position: -610px -150px;}
+.hover .link:active .ico.ico-mmenu21 {background-position: -640px -150px;}
+.hover .link:active .ico.ico-mmenu22 {background-position: -670px -150px;}
+.hover .link:active .ico.ico-mmenu23 {background-position: -700px -150px;}
+.hover .link:active .ico.ico-mmenu24 {background-position: -730px -150px;}
+.hover .link:active .ico.ico-mmenu25 {background-position: -760px -150px;}
+.hover .link:active .ico.ico-mmenu26 {background-position: -790px -150px;}
+.hover .link:active .ico.ico-mmenu27 {background-position: -820px -150px;}
+.hover .link:active .ico.ico-mmenu28 {background-position: -850px -150px;}
+.hover .link:active .ico.ico-mmenu29 {background-position: -880px -150px;}
+.hover .link:active .ico.ico-mmenu30 {background-position: -910px -150px;}
+.hover .link:active .ico.ico-mmenu31 {background-position: -940px -150px;}
+.hover .link:active .ico.ico-mmenu32 {background-position: -970px -150px;}
+/* S : 20200515 수정, 추가 */
+.hover .link:active .ico.ico-mmenu33 {background-position: -10px -261px;}
+.hover .link:active .ico.ico-mmenu34 {background-position: -40px -261px;}
+.hover .link:active .ico.ico-mmenu35 {background-position: -70px -261px;}
+.hover .link:active .ico.ico-mmenu36 {background-position: -100px -261px;}
+.hover .link:active .ico.ico-mmenu37 {background-position: -130px -261px;}
+.hover .link:active .ico.ico-mmenu38 {background-position: -160px -261px;}
+.hover .link:active .ico.ico-mmenu39 {background-position: -190px -261px;}
+.hover .link:active .ico.ico-mmenu40 {background-position: -220px -261px;}
+.hover .link:active .ico.ico-mmenu41 {background-position: -250px -261px;}
+.hover .link:active .ico.ico-mmenu42 {background-position: -280px -261px;}
+.hover .link:active .ico.ico-mmenu43 {background-position: -310px -261px;}
+.hover .link:active .ico.ico-mmenu44 {background-position: -340px -261px;}
+.hover .link:active .ico.ico-mmenu45 {background-position: -370px -261px;}
+.hover .link:active .ico.ico-mmenu46 {background-position: -400px -261px;}
+.hover .link:active .ico.ico-mmenu47 {background-position: -430px -261px;}
+.hover .link:active .ico.ico-mmenu48 {background-position: -460px -261px;}
+.hover .link:active .ico.ico-mmenu49 {background-position: -490px -261px;}
+/* E : 20200515 수정, 추가 */
+
+.is-selected .ico.ico-mmenu01 {background-position: -10px -150px;}
+.is-selected .ico.ico-mmenu02 {background-position: -40px -150px;}
+.is-selected .ico.ico-mmenu03 {background-position: -70px -150px;}
+.is-selected .ico.ico-mmenu04 {background-position: -100px -150px;}
+.is-selected .ico.ico-mmenu05 {background-position: -130px -150px;}
+.is-selected .ico.ico-mmenu06 {background-position: -160px -150px;}
+.is-selected .ico.ico-mmenu07 {background-position: -190px -150px;}
+.is-selected .ico.ico-mmenu08 {background-position: -220px -150px;}
+.is-selected .ico.ico-mmenu09 {background-position: -250px -150px;}
+.is-selected .ico.ico-mmenu10 {background-position: -280px -150px;}
+.is-selected .ico.ico-mmenu11 {background-position: -310px -150px;}
+.is-selected .ico.ico-mmenu12 {background-position: -340px -150px;}
+.is-selected .ico.ico-mmenu13 {background-position: -400px -150px;}
+.is-selected .ico.ico-mmenu14 {background-position: -430px -150px;}
+.is-selected .ico.ico-mmenu15 {background-position: -460px -150px;}
+.is-selected .ico.ico-mmenu16 {background-position: -490px -150px;}
+.is-selected .ico.ico-mmenu17 {background-position: -520px -150px;}
+.is-selected .ico.ico-mmenu18 {background-position: -550px -150px;}
+.is-selected .ico.ico-mmenu19 {background-position: -580px -150px;}
+.is-selected .ico.ico-mmenu20 {background-position: -610px -150px;}
+.is-selected .ico.ico-mmenu21 {background-position: -640px -150px;}
+.is-selected .ico.ico-mmenu22 {background-position: -670px -150px;}
+.is-selected .ico.ico-mmenu23 {background-position: -700px -150px;}
+.is-selected .ico.ico-mmenu24 {background-position: -730px -150px;}
+.is-selected .ico.ico-mmenu25 {background-position: -760px -150px;}
+.is-selected .ico.ico-mmenu26 {background-position: -790px -150px;}
+.is-selected .ico.ico-mmenu27 {background-position: -820px -150px;}
+.is-selected .ico.ico-mmenu28 {background-position: -850px -150px;}
+.is-selected .ico.ico-mmenu29 {background-position: -880px -150px;}
+.is-selected .ico.ico-mmenu30 {background-position: -910px -150px;}
+.is-selected .ico.ico-mmenu31 {background-position: -940px -150px;}
+.is-selected .ico.ico-mmenu32 {background-position: -970px -150px;}
+/* S : 20200515 수정, 추가 */
+.is-selected .ico.ico-mmenu33 {background-position: -10px -261px;}
+.is-selected .ico.ico-mmenu34 {background-position: -40px -261px;}
+.is-selected .ico.ico-mmenu35 {background-position: -70px -261px;}
+.is-selected .ico.ico-mmenu36 {background-position: -100px -261px;}
+.is-selected .ico.ico-mmenu37 {background-position: -130px -261px;}
+.is-selected .ico.ico-mmenu38 {background-position: -160px -261px;}
+.is-selected .ico.ico-mmenu39 {background-position: -190px -261px;}
+.is-selected .ico.ico-mmenu40 {background-position: -220px -261px;}
+.is-selected .ico.ico-mmenu41 {background-position: -250px -261px;}
+.is-selected .ico.ico-mmenu42 {background-position: -280px -261px;}
+.is-selected .ico.ico-mmenu43 {background-position: -310px -261px;}
+.is-selected .ico.ico-mmenu44 {background-position: -340px -261px;}
+.is-selected .ico.ico-mmenu45 {background-position: -370px -261px;}
+.is-selected .ico.ico-mmenu46 {background-position: -400px -261px;}
+.is-selected .ico.ico-mmenu47 {background-position: -430px -261px;}
+.is-selected .ico.ico-mmenu48 {background-position: -460px -261px;}
+.is-selected .ico.ico-mmenu49 {background-position: -490px -261px;}
+/* E : 20200515 수정, 추가 */
+
+
+.tab-welcome-menu .ico.ico-mmenu01 {background-position: -10px -150px;}
+.tab-welcome-menu .ico.ico-mmenu02 {background-position: -40px -150px;}
+.tab-welcome-menu .ico.ico-mmenu03 {background-position: -70px -150px;}
+.tab-welcome-menu .ico.ico-mmenu04 {background-position: -100px -150px;}
+.tab-welcome-menu .ico.ico-mmenu05 {background-position: -130px -150px;}
+.tab-welcome-menu .ico.ico-mmenu06 {background-position: -160px -150px;}
+.tab-welcome-menu .ico.ico-mmenu07 {background-position: -190px -150px;}
+.tab-welcome-menu .ico.ico-mmenu08 {background-position: -220px -150px;}
+.tab-welcome-menu .ico.ico-mmenu09 {background-position: -250px -150px;}
+.tab-welcome-menu .ico.ico-mmenu10 {background-position: -280px -150px;}
+.tab-welcome-menu .ico.ico-mmenu11 {background-position: -310px -150px;}
+.tab-welcome-menu .ico.ico-mmenu12 {background-position: -340px -150px;}
+.tab-welcome-menu .ico.ico-mmenu13 {background-position: -400px -150px;}
+.tab-welcome-menu .ico.ico-mmenu14 {background-position: -430px -150px;}
+.tab-welcome-menu .ico.ico-mmenu15 {background-position: -460px -150px;}
+.tab-welcome-menu .ico.ico-mmenu16 {background-position: -490px -150px;}
+.tab-welcome-menu .ico.ico-mmenu17 {background-position: -520px -150px;}
+.tab-welcome-menu .ico.ico-mmenu18 {background-position: -550px -150px;}
+.tab-welcome-menu .ico.ico-mmenu19 {background-position: -580px -150px;}
+.tab-welcome-menu .ico.ico-mmenu20 {background-position: -610px -150px;}
+.tab-welcome-menu .ico.ico-mmenu21 {background-position: -640px -150px;}
+.tab-welcome-menu .ico.ico-mmenu22 {background-position: -670px -150px;}
+.tab-welcome-menu .ico.ico-mmenu23 {background-position: -700px -150px;}
+.tab-welcome-menu .ico.ico-mmenu24 {background-position: -730px -150px;}
+.tab-welcome-menu .ico.ico-mmenu25 {background-position: -760px -150px;}
+.tab-welcome-menu .ico.ico-mmenu26 {background-position: -790px -150px;}
+.tab-welcome-menu .ico.ico-mmenu27 {background-position: -820px -150px;}
+.tab-welcome-menu .ico.ico-mmenu28 {background-position: -850px -150px;}
+.tab-welcome-menu .ico.ico-mmenu29 {background-position: -880px -150px;}
+.tab-welcome-menu .ico.ico-mmenu30 {background-position: -910px -150px;}
+.tab-welcome-menu .ico.ico-mmenu31 {background-position: -940px -150px;}
+.tab-welcome-menu .ico.ico-mmenu32 {background-position: -970px -150px;}
+/* S : 20200515 수정, 추가 */
+.tab-welcome-menu .ico.ico-mmenu33 {background-position: -10px -261px;}
+.tab-welcome-menu .ico.ico-mmenu34 {background-position: -40px -261px;}
+.tab-welcome-menu .ico.ico-mmenu35 {background-position: -70px -261px;}
+.tab-welcome-menu .ico.ico-mmenu36 {background-position: -100px -261px;}
+.tab-welcome-menu .ico.ico-mmenu37 {background-position: -130px -261px;}
+.tab-welcome-menu .ico.ico-mmenu38 {background-position: -160px -261px;}
+.tab-welcome-menu .ico.ico-mmenu39 {background-position: -190px -261px;}
+.tab-welcome-menu .ico.ico-mmenu40 {background-position: -220px -261px;}
+.tab-welcome-menu .ico.ico-mmenu41 {background-position: -250px -261px;}
+.tab-welcome-menu .ico.ico-mmenu42 {background-position: -280px -261px;}
+.tab-welcome-menu .ico.ico-mmenu43 {background-position: -310px -261px;}
+.tab-welcome-menu .ico.ico-mmenu44 {background-position: -340px -261px;}
+.tab-welcome-menu .ico.ico-mmenu45 {background-position: -370px -261px;}
+.tab-welcome-menu .ico.ico-mmenu46 {background-position: -400px -261px;}
+.tab-welcome-menu .ico.ico-mmenu47 {background-position: -430px -261px;}
+.tab-welcome-menu .ico.ico-mmenu48 {background-position: -460px -261px;}
+.tab-welcome-menu .ico.ico-mmenu49 {background-position: -490px -261px;}
+/* E : 20200515 수정, 추가 */
+.tab-welcome-menu .ico.ico-plus30 {background-position: -370px -150px;opacity: 1; -ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity= 100); /* // for IE8 */ filter: alpha(opacity= 100); /* //for IE5-7 */ }
+
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu01 {background-position: -10px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu02 {background-position: -40px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu03 {background-position: -70px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu04 {background-position: -100px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu05 {background-position: -130px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu06 {background-position: -160px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu07 {background-position: -190px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu08 {background-position: -220px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu09 {background-position: -250px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu10 {background-position: -280px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu11 {background-position: -310px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu12 {background-position: -340px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu13 {background-position: -400px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu14 {background-position: -430px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu15 {background-position: -460px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu16 {background-position: -490px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu17 {background-position: -520px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu18 {background-position: -550px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu19 {background-position: -580px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu20 {background-position: -610px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu21 {background-position: -640px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu22 {background-position: -670px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu23 {background-position: -700px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu24 {background-position: -730px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu25 {background-position: -760px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu26 {background-position: -790px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu27 {background-position: -820px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu28 {background-position: -850px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu29 {background-position: -880px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu30 {background-position: -910px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu31 {background-position: -940px -180px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu32 {background-position: -970px -180px;}
+/* S : 20200515 수정, 추가 */
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu33 {background-position: -10px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu34 {background-position: -40px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu35 {background-position: -70px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu36 {background-position: -100px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu37 {background-position: -130px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu38 {background-position: -160px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu39 {background-position: -190px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu40 {background-position: -220px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu41 {background-position: -250px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu42 {background-position: -280px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu43 {background-position: -310px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu44 {background-position: -340px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu45 {background-position: -370px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu46 {background-position: -400px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu47 {background-position: -430px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu48 {background-position: -460px -291px;}
+.tab-welcome-menu .hover .link:hover .ico.ico-mmenu49 {background-position: -490px -291px;}
+/* E : 20200515 수정, 추가 */
+.tab-welcome-menu .hover .link:hover .ico.ico-plus30 {background-position: -370px -180px;}
+
+
+
+/*더보기*/
+.ico.ico-plus30 {width:24px; height:24px; background-position: -370px -210px;  }
+a:hover .ico.ico-plus30 {background-position: -370px -210px; }
+
+
+/*연관검색어 닫기*/
+.ico-related-close {width: 14px; height: 14px; background-position: -760px -60px;  }
+a:active .ico-related-close {background-position: -790px -60px;  }
+/* 20200424 S: 추천키워드 더보기 버튼 추가 */
+.ico-related-more { width:8px; height:5px; background-position: -810px -60px; }
+.btn-rec-more.is-active .ico-related-more { background-position: -810px -68px; }
+/* 20200424 E: 추천키워드 더보기 버튼 추가 */
+
+
+/*아이콘버튼*/
+/* S : 20200511 수정 */
+.btn-bic-pos .ico, .btn-mmenu .ico  {width:15px; height:15px; margin-top:3px; margin-right:5px; background-position: 100px 100px;}
+
+.ico.ico-btn01 {background-position: -10px -240px;}
+.ico.ico-btn02 {background-position: -40px -240px;}
+.ico.ico-btn03 {background-position: -70px -240px;}
+.ico.ico-btn04 {background-position: -100px -240px;}
+.ico.ico-btn05 {background-position: -130px -240px;}
+.ico.ico-btn06 {background-position: -160px -240px;}
+.ico.ico-btn07 {background-position: -190px -240px;}
+.ico.ico-btn08 {background-position: -220px -240px;}
+.ico.ico-btn09 {background-position: -250px -240px;}
+.ico.ico-btn10 {background-position: -280px -240px;}
+.ico.ico-btn11 {background-position: -310px -240px;}
+.ico.ico-btn12 {background-position: -340px -240px;}
+.ico.ico-pls30 {background-position: -370px -240px;}
+.ico.ico-btn13 {background-position: -400px -240px;}
+.ico.ico-btn14 {background-position: -430px -240px;}
+.ico.ico-btn15 {background-position: -460px -240px;}
+.ico.ico-btn16 {background-position: -490px -240px;}
+.ico.ico-btn17 {background-position: -520px -240px;}
+.ico.ico-btn18 {background-position: -550px -240px;}
+.ico.ico-btn19 {background-position: -580px -240px;}
+.ico.ico-btn20 {background-position: -610px -240px;}
+.ico.ico-btn21 {background-position: -640px -240px;}
+.ico.ico-btn22 {background-position: -670px -240px;}
+.ico.ico-btn23 {background-position: -700px -240px;}
+.ico.ico-btn24 {background-position: -730px -240px;}
+.ico.ico-btn25 {background-position: -760px -240px;}
+.ico.ico-btn26 {background-position: -790px -240px;}
+.ico.ico-btn27 {background-position: -820px -240px;}
+.ico.ico-btn28 {background-position: -850px -240px;}
+.ico.ico-btn29 {background-position: -880px -240px;}
+.ico.ico-btn30 {background-position: -910px -240px;}
+.ico.ico-btn31 {background-position: -940px -240px;}
+.ico.ico-btn32 {background-position: -970px -240px;}
+
+/* S : 20200515 수정, 추가 */
+.ico.ico-btn33 {background-position: -10px -351px;}
+.ico.ico-btn34 {background-position: -40px -351px;}
+.ico.ico-btn35 {background-position: -70px -351px;}
+.ico.ico-btn36 {background-position: -100px -351px;}
+.ico.ico-btn37 {background-position: -130px -351px;}
+.ico.ico-btn38 {background-position: -160px -351px;}
+.ico.ico-btn39 {background-position: -190px -351px;}
+.ico.ico-btn40 {background-position: -220px -351px;}
+.ico.ico-btn41 {background-position: -250px -351px;}
+.ico.ico-btn42 {background-position: -280px -351px;}
+.ico.ico-btn43 {background-position: -310px -351px;}
+.ico.ico-btn44 {background-position: -340px -351px;}
+.ico.ico-btn45 {background-position: -370px -351px;}
+.ico.ico-btn46 {background-position: -400px -351px;}
+.ico.ico-btn47 {background-position: -430px -351px;}
+.ico.ico-btn48 {background-position: -460px -351px;}
+.ico.ico-btn49 {background-position: -490px -351px;}
+/* E : 20200515 수정, 추가 */
+/* E : 20200511 수정 */
